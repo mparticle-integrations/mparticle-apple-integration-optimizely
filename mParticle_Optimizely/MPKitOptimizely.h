@@ -26,6 +26,9 @@
 @class OPTLYManager;
 @class OPTLYVariation;
 
+extern NSString *const optimizelyCustomEventName;
+extern NSString *const optimizelyTrackedValue;
+
 @interface MPKitOptimizely : NSObject <MPKitProtocol>
 
 @property (nonatomic, strong, nonnull) NSDictionary *configuration;

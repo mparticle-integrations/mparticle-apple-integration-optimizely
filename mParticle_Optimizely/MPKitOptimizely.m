@@ -68,10 +68,16 @@
 
 #endif
 
-NSString *const eabAPIKey = @"apiKey";
-NSString *const eabDataFile = @"datafile";
-NSString *const eabExperimentKey = @"experiment";
-NSString *const eabUserIDKey = @"userid";
+NSString *const eabAPIKey = @"sdk_key";
+NSString *const eabEventInterval = @"event_interval";
+NSString *const eabUserIDKey = @"userIdField";
+
+NSString *const eabUserIDCustomerIDValue = @"customerId";
+NSString *const eabUserIDEmailValue = @"email";
+NSString *const eabUserIDMPIDValue = @"mpid";
+
+NSString *const optimizelyCustomEventName = @"Optimizely.EventName";
+NSString *const optimizelyTrackedValue = @"Optimizely.EventKey.Value";
 
 @implementation MPKitOptimizely
 
@@ -100,10 +106,6 @@ NSString *const eabUserIDKey = @"userid";
     return execStatus;
 }
 
-- (id const)providerKitInstance {
-    return [self started] ? self.manager : nil;
-}
-
 - (void)start {
     static dispatch_once_t optimizelyPredicate;
 
@@ -111,11 +113,10 @@ NSString *const eabUserIDKey = @"userid";
         self.manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder  builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
             
             NSString *sdkKey = self.configuration[eabAPIKey];
-            NSString *fileContents = self.configuration[eabDataFile];
-            NSData *jsonData = [fileContents dataUsingEncoding:NSUTF8StringEncoding];
+            NSNumber *eventInterval = self.configuration[eabEventInterval];
             
-            builder.datafile = jsonData;
             builder.sdkKey = sdkKey;
+            builder.eventDispatchInterval = [eventInterval doubleValue];
         }]];
         
         self->_started = YES;
@@ -143,56 +144,40 @@ NSString *const eabUserIDKey = @"userid";
 - (MPKitExecStatus *)logCommerceEvent:(MPCommerceEvent *)commerceEvent {
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceOptimizely) returnCode:MPKitReturnCodeSuccess forwardCount:0];
     
-    if (commerceEvent.action == MPCommerceEventActionPurchase) {
-        NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
-        NSDictionary *transactionAttributes = [commerceEvent.transactionAttributes beautifiedDictionaryRepresentation];
-        
-        if (transactionAttributes) {
-            [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
-        }
-        
-        NSDictionary *commerceEventAttributes = [commerceEvent beautifiedAttributes];
-        NSArray *keys = @[kMPExpCECheckoutOptions, kMPExpCECheckoutStep, kMPExpCEProductListName, kMPExpCEProductListSource];
-        
-        for (NSString *key in keys) {
-            if (commerceEventAttributes[key]) {
-                baseProductAttributes[key] = commerceEventAttributes[key];
+    NSArray *expandedInstructions = [commerceEvent expandedInstructions];
+    
+    for (MPCommerceEventInstruction *commerceEventInstruction in expandedInstructions) {
+        if (commerceEventInstruction.instruction == MPCommerceInstructionTransaction) {
+            NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
+            NSDictionary *transactionAttributes = commerceEventInstruction.event.info;
+            
+            if (transactionAttributes[kMPExpTARevenue] != nil) {
+                [baseProductAttributes setObject:transactionAttributes[kMPExpTARevenue] forKey: @"revenue"];
+            }
+            
+            if (transactionAttributes) {
+                [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
+            }
+            
+            NSMutableDictionary *customAttributes = commerceEvent.userDefinedAttributes;
+            
+            NSString *customCommerceEventName;
+            if (customAttributes) {
+                customCommerceEventName = customAttributes[optimizelyCustomEventName];
+                
+                [customAttributes removeObjectForKey:optimizelyCustomEventName];
+                
+                [baseProductAttributes addEntriesFromDictionary:customAttributes];
+            }
+            
+            commerceEventInstruction.event.info = baseProductAttributes;
+            if (customCommerceEventName) {
+                commerceEventInstruction.event.name = customCommerceEventName;
             }
         }
         
-        NSArray *products = commerceEvent.products;
-        NSMutableDictionary *properties;
-        
-        for (MPProduct *product in products) {
-            // Add relevant attributes from the commerce event
-            properties = [[NSMutableDictionary alloc] init];
-            if (baseProductAttributes.count > 0) {
-                [properties addEntriesFromDictionary:baseProductAttributes];
-            }
-            
-            // Add attributes from the product itself
-            NSDictionary *productDictionary = [product beautifiedDictionaryRepresentation];
-            if (productDictionary) {
-                [properties addEntriesFromDictionary:productDictionary];
-            }
-            
-            // Strips key/values already being passed to Appboy, plus key/values initialized to default values
-            keys = @[kMPExpProductSKU, kMPProductCurrency, kMPExpProductUnitPrice, kMPExpProductQuantity, kMPProductAffiliation, kMPExpProductCategory, kMPExpProductName];
-            [properties removeObjectsForKeys:keys];
-            
-            [[self.manager getOptimizely] track:product.sku
-                       userId:[self userIDForOptimizely]
-                   attributes:properties];
-            
-            [execStatus incrementForwardCount];
-        }
-    } else {
-        NSArray *expandedInstructions = [commerceEvent expandedInstructions];
-        
-        for (MPCommerceEventInstruction *commerceEventInstruction in expandedInstructions) {
-            [self logEvent:commerceEventInstruction.event];
-            [execStatus incrementForwardCount];
-        }
+        [self logEvent:commerceEventInstruction.event];
+        [execStatus incrementForwardCount];
     }
     
     return execStatus;
@@ -212,7 +197,18 @@ NSString *const eabUserIDKey = @"userid";
 - (NSString *)userIDForOptimizely {
     MParticleUser *currentUser = [[MParticle sharedInstance].identity currentUser];
     
-    return self.configuration[eabAPIKey] ? [currentUser.userId stringValue] : currentUser.userIdentities[@(MPUserIdentityEmail)];
+    NSString *userID = nil;
+    if (currentUser != nil && self.configuration[eabUserIDKey] != nil) {
+        NSString *key = self.configuration[eabUserIDKey];
+        if (key == eabUserIDCustomerIDValue) {
+            userID = currentUser.userIdentities[@(MPUserIdentityCustomerId)];
+        } else if (currentUser != nil && key == eabUserIDEmailValue) {
+            userID = currentUser.userIdentities[@(MPUserIdentityEmail)];
+        } else if (currentUser != nil && key == eabUserIDMPIDValue) {
+            userID = [currentUser.userId stringValue];
+        }
+    }
+    return self.configuration[eabUserIDKey] ? [currentUser.userId stringValue] : currentUser.userIdentities[@(MPUserIdentityEmail)];
 }
 
 @end
