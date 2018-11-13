@@ -23,18 +23,20 @@
 #import "mParticle.h"
 #endif
 
-@class OPTLYManager;
+@class OPTLYClient;
 @class OPTLYVariation;
 
-extern NSString *const optimizelyCustomEventName;
-extern NSString *const optimizelyTrackedValue;
+extern NSString *const MPKitOptimizelyEventName;
+extern NSString *const MPKitOptimizelyEventKeyValue;
+
+static OPTLYClient *MPKitOptimizelyClient;
 
 @interface MPKitOptimizely : NSObject <MPKitProtocol>
 
 @property (nonatomic, strong, nonnull) NSDictionary *configuration;
 @property (nonatomic, strong, nullable) NSDictionary *launchOptions;
 @property (nonatomic, unsafe_unretained, readonly) BOOL started;
-@property (nonatomic, strong, nullable) OPTLYManager *manager;
+@property (nonatomic, strong, nullable) MPKitAPI *kitApi;
 
 - (OPTLYVariation *)variationForExperimentKey:(nonnull NSString *)key;
 
