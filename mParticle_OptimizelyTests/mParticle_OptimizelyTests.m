@@ -7,6 +7,17 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "MPKitOptimizely.h"
+#if TARGET_OS_IOS == 1
+#import <OptimizelySDKiOS/OptimizelySDKiOS.h>
+#elif TARGET_OS_TV == 1
+#import <OptimizelySDKTVOS/OptimizelySDKTVOS.h>
+#endif
+
+
+NSString *const eabAPIKey = @"sdk_key";
+NSString *const eabEventInterval = @"event_interval";
+NSString *const eabUserIDKey = @"userIdField";
 
 @interface mParticle_OptimizelyTests : XCTestCase
 
@@ -24,16 +35,58 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testLaunch {
+    NSDictionary *configuration = @{
+                                    @"id":@42,
+                                    eabAPIKey:@"274279246429244297",
+                                    eabEventInterval:@23,
+                                    @"as":@{
+                                            @"appId":@"MyAppId"
+                                            }
+                                    };
+    
+    MPKitOptimizely *kitInstance = [[MPKitOptimizely alloc] init];
+    
+    MPKitExecStatus *execStatus = [kitInstance didFinishLaunchingWithConfiguration:configuration];
+    
+    XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testLaunchFailure {
+    NSDictionary *configuration = @{
+                                    @"id":@42,
+                                    eabEventInterval:@23,
+                                    @"as":@{
+                                            @"appId":@"MyAppId"
+                                            }
+                                    };
+    
+    MPKitOptimizely *kitInstance = [[MPKitOptimizely alloc] init];
+    
+    MPKitExecStatus *execStatus = [kitInstance didFinishLaunchingWithConfiguration:configuration];
+    
+    XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeRequirementsNotMet);
+}
+
+- (void)testManualClient {
+    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    [MPKitOptimizely setOptimizelyClient:testClient];
+    
+    NSDictionary *configuration = @{
+                                    @"id":@42,
+                                    eabAPIKey:@"274279246429244297",
+                                    eabEventInterval:@23,
+                                    @"as":@{
+                                            @"appId":@"MyAppId"
+                                            }
+                                    };
+    
+    MPKitOptimizely *kitInstance = [[MPKitOptimizely alloc] init];
+    
+    MPKitExecStatus *execStatus = [kitInstance didFinishLaunchingWithConfiguration:configuration];
+    
+    XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
+    XCTAssertEqualObjects(testClient, [MPKitOptimizely optimizelyClient]);
 }
 
 @end

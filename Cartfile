@@ -1,2 +1,2 @@
-github "optimizely/objective-c-sdk" "v2.1.2"
-github "mparticle/mparticle-apple-sdk" ~> 7.6.0
+github "optimizely/objective-c-sdk" ~> 2.1.3
+git "https://git.corp.mparticle.com/mparticle/mparticle-apple-sdk" "Add-Optimizely-Integration"

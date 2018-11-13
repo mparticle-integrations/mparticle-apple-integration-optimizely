@@ -29,8 +29,6 @@
 extern NSString *const MPKitOptimizelyEventName;
 extern NSString *const MPKitOptimizelyEventKeyValue;
 
-static OPTLYClient *MPKitOptimizelyClient;
-
 @interface MPKitOptimizely : NSObject <MPKitProtocol>
 
 @property (nonatomic, strong, nonnull) NSDictionary *configuration;
@@ -39,5 +37,6 @@ static OPTLYClient *MPKitOptimizelyClient;
 @property (nonatomic, strong, nullable) MPKitAPI *kitApi;
 
 - (OPTLYVariation *)variationForExperimentKey:(nonnull NSString *)key;
-
++ (OPTLYClient *)optimizelyClient;
++ (void)setOptimizelyClient:(OPTLYClient *)client;
 @end
