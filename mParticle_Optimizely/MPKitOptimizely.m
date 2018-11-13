@@ -17,26 +17,47 @@
 //
 
 #import "MPKitOptimizely.h"
+
 #if TARGET_OS_IOS == 1
+
+#if defined(__has_include) && __has_include(<OptimizelySDKiOS/OptimizelySDKiOS.h>)
 #import <OptimizelySDKiOS/OptimizelySDKiOS.h>
-#elif TARGET_OS_TV == 1
-#import <OptimizelySDKTVOS/OptimizelySDKTVOS.h>
+#else
+#import "OptimizelySDKiOS.h"
 #endif
+
+#elif TARGET_OS_TV == 1
+#if defined(__has_include) && __has_include(<OptimizelySDKTVOS/OptimizelySDKTVOS.h>)
+#import <OptimizelySDKTVOS/OptimizelySDKTVOS.h>
+#else
+#import "OptimizelySDKTVOS.h"
+#endif
+
+#endif
+
+#if defined(__has_include) && __has_include(<OptimizelySDKDatafileManager/OPTLYDatafileManager.h>)
+#import <OptimizelySDKDatafileManager/OPTLYDatafileManager.h>
+#else
+#import "OPTLYDatafileManager.h"
+#endif
+
+NSString *const optimizelyCustomEventName = @"Optimizely.EventName";
+NSString *const optimizelyTrackedValue = @"Optimizely.Value";
+NSString *const optimizelyCustomUserId = @"Optimizely.UserId";
 
 @implementation MPKitOptimizely
 
 static OPTLYClient *MPKitOptimizelyClient;
 
-static NSString *const oiAPIKey = @"sdk_key";
-static NSString *const oiEventInterval = @"event_interval";
-static NSString *const oiUserIDKey = @"userIdField";
+static NSString *const oiAPIKey = @"projectId";
+static NSString *const oiEventInterval = @"eventInterval";
+static NSString *const oiDataFileInterval = @"eventInterval";
+static NSString *const oiuserIdKey = @"userIdField";
 
-static NSString *const oiUserIDCustomerIDValue = @"customerId";
-static NSString *const oiUserIDEmailValue = @"email";
-static NSString *const oiUserIDMPIDValue = @"mpid";
-
-static NSString *const optimizelyCustomEventName = @"Optimizely.EventName";
-static NSString *const optimizelyTrackedValue = @"Optimizely.EventKey.Value";
+static NSString *const oiuserIdCustomerIDValue = @"customerId";
+static NSString *const oiuserIdEmailValue = @"email";
+static NSString *const oiuserIdMPIDValue = @"mpid";
+static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 
 #pragma mark Static Methods
 
@@ -65,24 +86,38 @@ static NSString *const optimizelyTrackedValue = @"Optimizely.EventKey.Value";
 
 #pragma mark MPKitInstanceProtocol methods
 - (MPKitExecStatus *)didFinishLaunchingWithConfiguration:(NSDictionary *)configuration {
-    if (!configuration[oiAPIKey] || !configuration[oiEventInterval]) {
+    NSString *sdkKey = configuration[oiAPIKey];
+    if (!sdkKey) {
         return [self execStatus:MPKitReturnCodeRequirementsNotMet];
     }
+    
+    NSNumber *eventInterval = self.configuration[oiEventInterval];
+    NSNumber *dataFileInterval = self.configuration[oiDataFileInterval];
 
     _configuration = configuration;
-    _started = YES;
     
     if (MPKitOptimizelyClient == nil) {
         static dispatch_once_t optimizelyPredicate;
         
         dispatch_once(&optimizelyPredicate, ^{
+            OPTLYDatafileManagerDefault *datafileManager;
+            if (dataFileInterval != nil) {
+                datafileManager =
+                [[OPTLYDatafileManagerDefault alloc] initWithBuilder:[OPTLYDatafileManagerBuilder builderWithBlock:^(OPTLYDatafileManagerBuilder * _Nullable builder) {
+                    builder.datafileConfig = [[OPTLYDatafileConfig alloc] initWithProjectId:nil withSDKKey:sdkKey];
+                    builder.datafileFetchInterval = dataFileInterval != nil ? [dataFileInterval doubleValue] : 120.0;
+                }]];
+            }
+            
             OPTLYManager *manager = [[OPTLYManager alloc] initWithBuilder:[OPTLYManagerBuilder  builderWithBlock:^(OPTLYManagerBuilder * _Nullable builder) {
                 
-                NSString *sdkKey = self.configuration[oiAPIKey];
-                NSNumber *eventInterval = self.configuration[oiEventInterval];
-                
                 builder.sdkKey = sdkKey;
-                builder.eventDispatchInterval = [eventInterval doubleValue];
+                if (datafileManager != nil) {
+                    builder.datafileManager = datafileManager;
+                }
+                if (eventInterval != nil) {
+                    builder.eventDispatchInterval = [eventInterval doubleValue];
+                }
             }]];
             
             MPKitOptimizelyClient = [manager initialize];
@@ -96,71 +131,85 @@ static NSString *const optimizelyTrackedValue = @"Optimizely.EventKey.Value";
                                                                   userInfo:userInfo];
             });
         });
+    } else {
+        _started = YES;
     }
 
     return [self execStatus:MPKitReturnCodeSuccess];
 }
 
-- (OPTLYVariation *)variationForExperimentKey:(nonnull NSString *)key {
+- (id const)providerKitInstance {
+    return [self started] ? self : nil;
+}
+
+- (OPTLYVariation *)variationForExperimentKey:(nonnull NSString *)key customUserId:(nullable NSString *)customUserID {
     if (!MPKitOptimizelyClient) return nil;
     
     FilteredMParticleUser *currentUser = [[self kitApi] getCurrentUserWithKit:self];
+    NSString *userId = customUserID != nil ? customUserID : [self userIdForOptimizely:currentUser];
+    
+    if (!userId) {
+        return nil;
+    }
 
-    NSDictionary *transformedUserInfo = [currentUser.userIdentities transformValuesToString];
+    NSDictionary *transformedUserInfo = [currentUser.userAttributes transformValuesToString];
     
     return [MPKitOptimizelyClient activate:key
-                     userId:[self userIDForOptimizely]
+                                    userId:userId
                  attributes:transformedUserInfo];
 }
 
 - (MPKitExecStatus *)logCommerceEvent:(MPCommerceEvent *)commerceEvent {
     MPKitExecStatus *execStatus = [self execStatus:MPKitReturnCodeSuccess];
     
-    NSString *userID = [self userIDForOptimizely];
+    FilteredMParticleUser *currentUser = [[self kitApi] getCurrentUserWithKit:self];
+    NSString *userId = [self userIdForOptimizely:currentUser];
+    if (!userId) {
+        return [self execStatus:MPKitReturnCodeFail];
+    }
     NSArray *expandedInstructions = [commerceEvent expandedInstructions];
+    NSDictionary<NSString *, __kindof NSArray<NSString *> *> *customFlags = commerceEvent.customFlags;
     
     for (MPCommerceEventInstruction *commerceEventInstruction in expandedInstructions) {
-        if (commerceEventInstruction.instruction == MPCommerceInstructionTransaction) {
-            NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
-            
-            NSDictionary<NSString *, __kindof NSArray<NSString *> *> *customFlags = commerceEvent.customFlags;
+        NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
+
+        if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
             
             NSString *customCommerceEventName;
-            NSString *customCommerceTrackedValue;
             if (customFlags) {
                 if (customFlags[optimizelyCustomEventName].count != 0) {
                     customCommerceEventName = customFlags[optimizelyCustomEventName][0];
-                }
-                if (customFlags[optimizelyTrackedValue].count != 0) {
-                    customCommerceTrackedValue = customFlags[optimizelyTrackedValue][0];
                 }
             }
             
             NSDictionary *transactionAttributes = commerceEventInstruction.event.info;
             
-            if (transactionAttributes[kMPExpTARevenue] != nil) {
-                [baseProductAttributes setObject:transactionAttributes[kMPExpTARevenue] forKey: @"revenue"];
-            }
-            
-            if (customCommerceTrackedValue != nil && transactionAttributes[customCommerceTrackedValue]) {
-                [baseProductAttributes setObject:transactionAttributes[customCommerceTrackedValue] forKey: @"value"];
+            if (commerceEvent.transactionAttributes.revenue != nil) {
+                NSNumber *revenueInCents = [NSNumber numberWithLong:[commerceEvent.transactionAttributes.revenue integerValue]*100];
+                [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
             }
             
             if (transactionAttributes) {
                 [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
             }
             
-            commerceEventInstruction.event.info = baseProductAttributes;
             if (customCommerceEventName) {
                 commerceEventInstruction.event.name = customCommerceEventName;
             }
         }
         
-        NSDictionary *transformedEventInfo = [commerceEventInstruction.event.info transformValuesToString];
+        if (customFlags) {
+            if (customFlags[optimizelyCustomUserId].count != 0 & customFlags[optimizelyCustomUserId][0] != nil) {
+                userId = customFlags[optimizelyCustomUserId][0];
+            }
+        }
+                
+        NSDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString];
 
         [MPKitOptimizelyClient track:commerceEventInstruction.event.name
-                              userId:userID
-                          attributes:transformedEventInfo];
+                              userId:userId
+                          attributes:currentUser.userAttributes
+                           eventTags:transformedEventInfo];
         [execStatus incrementForwardCount];
     }
     
@@ -168,8 +217,15 @@ static NSString *const optimizelyTrackedValue = @"Optimizely.EventKey.Value";
 }
 
 - (MPKitExecStatus *)logEvent:(MPEvent *)event {
-    if (!MPKitOptimizelyClient) [self execStatus:MPKitReturnCodeFail];
+    if (!MPKitOptimizelyClient || !event) return [self execStatus:MPKitReturnCodeFail];
     
+    FilteredMParticleUser *currentUser = [[self kitApi] getCurrentUserWithKit:self];
+    NSString *userId = [self userIdForOptimizely:currentUser];
+    
+    if (!userId) {
+        return [self execStatus:MPKitReturnCodeFail];
+    }
+
     NSDictionary<NSString *, __kindof NSArray<NSString *> *> *customFlags = event.customFlags;
     
     NSString *customTrackedValue;
@@ -177,13 +233,16 @@ static NSString *const optimizelyTrackedValue = @"Optimizely.EventKey.Value";
         if (customFlags[optimizelyTrackedValue].count != 0) {
             customTrackedValue = customFlags[optimizelyTrackedValue][0];
         }
+        if (customFlags[optimizelyCustomUserId].count != 0 & customFlags[optimizelyCustomUserId][0] != nil) {
+            userId = customFlags[optimizelyCustomUserId][0];
+        }
     }
     
     NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
     NSDictionary *transactionAttributes = event.info;
     
-    if (customTrackedValue != nil && transactionAttributes[customTrackedValue]) {
-        [baseProductAttributes setObject:transactionAttributes[customTrackedValue] forKey: @"value"];
+    if (customTrackedValue != nil) {
+        [baseProductAttributes setObject:customTrackedValue forKey: @"value"];
     }
     
     if (transactionAttributes) {
@@ -193,27 +252,28 @@ static NSString *const optimizelyTrackedValue = @"Optimizely.EventKey.Value";
     NSDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString];
     
     [MPKitOptimizelyClient track:event.name
-                          userId:[self userIDForOptimizely]
-                      attributes:transformedEventInfo];
+                          userId:userId
+                      attributes:currentUser.userAttributes
+                       eventTags:transformedEventInfo];
     
     return [self execStatus:MPKitReturnCodeSuccess];
 }
 
-- (NSString *)userIDForOptimizely {
-    FilteredMParticleUser *currentUser = [[self kitApi] getCurrentUserWithKit:self];
-    
-    NSString *userID = nil;
-    if (currentUser != nil && self.configuration[oiUserIDKey] != nil) {
-        NSString *key = self.configuration[oiUserIDKey];
-        if (key == oiUserIDCustomerIDValue) {
-            userID = currentUser.userIdentities[@(MPUserIdentityCustomerId)];
-        } else if (key == oiUserIDEmailValue) {
-            userID = currentUser.userIdentities[@(MPUserIdentityEmail)];
-        } else if (key == oiUserIDMPIDValue) {
-            userID = [currentUser.userId stringValue];
+- (NSString *)userIdForOptimizely:(FilteredMParticleUser *)currentUser {
+    NSString *userId = [[[MParticle sharedInstance] identity] deviceApplicationStamp];
+    if (currentUser != nil && self.configuration[oiuserIdKey] != nil) {
+        NSString *key = self.configuration[oiuserIdKey];
+        if ([key isEqualToString:oiuserIdCustomerIDValue] && currentUser.userIdentities[@(MPUserIdentityCustomerId)] != nil) {
+            userId = currentUser.userIdentities[@(MPUserIdentityCustomerId)];
+        } else if ([key isEqualToString:oiuserIdEmailValue] && currentUser.userIdentities[@(MPUserIdentityEmail)] != nil) {
+            userId = currentUser.userIdentities[@(MPUserIdentityEmail)];
+        } else if ([key isEqualToString:oiuserIdMPIDValue] && currentUser.userId != nil) {
+            userId = currentUser.userId != 0 ? [currentUser.userId stringValue] : @"0" ;
+        } else if ([key isEqualToString:oiuserIdDeviceStampValue]) {
+            userId = [[[MParticle sharedInstance] identity] deviceApplicationStamp];
         }
     }
-    return userID;
+    return userId;
 }
 
 @end

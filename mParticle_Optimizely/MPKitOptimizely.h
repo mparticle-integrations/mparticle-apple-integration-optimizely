@@ -23,6 +23,10 @@
 #import "mParticle.h"
 #endif
 
+extern NSString * _Nonnull const optimizelyCustomEventName;
+extern NSString * _Nonnull const optimizelyTrackedValue;
+extern NSString * _Nonnull const optimizelyCustomUserId;
+
 @class OPTLYClient;
 @class OPTLYVariation;
 
@@ -36,7 +40,7 @@ extern NSString *const MPKitOptimizelyEventKeyValue;
 @property (nonatomic, unsafe_unretained, readonly) BOOL started;
 @property (nonatomic, strong, nullable) MPKitAPI *kitApi;
 
-- (OPTLYVariation *)variationForExperimentKey:(nonnull NSString *)key;
+- (OPTLYVariation *)variationForExperimentKey:(nonnull NSString *)key customUserId:(nullable NSString *)customUserID;
 + (OPTLYClient *)optimizelyClient;
 + (void)setOptimizelyClient:(OPTLYClient *)client;
 @end

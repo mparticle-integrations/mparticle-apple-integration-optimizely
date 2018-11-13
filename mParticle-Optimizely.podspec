@@ -14,15 +14,15 @@ Pod::Spec.new do |s|
     s.social_media_url = "https://twitter.com/mparticles"
 
     s.ios.deployment_target = "8.0"
-    s.ios.source_files      = 'mParticle-Optimizely/*.{h,m,mm}'
-    s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 7.6.0'
+    s.ios.source_files      = 'mParticle_Optimizely/*.{h,m,mm}'
+    s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 7.7.3'
     s.ios.frameworks = 'CoreTelephony', 'SystemConfiguration'
     s.libraries = 'z'
     s.ios.dependency 'OptimizelySDKiOS', '~> 2.1.3'
 
     s.tvos.deployment_target = "9.0"
-    s.tvos.source_files      = 'mParticle-Optimizely/*.{h,m,mm}'
-    s.tvos.dependency 'mParticle-Apple-SDK/mParticle', '~> 7.6.0'
+    s.tvos.source_files      = 'mParticle_Optimizely/*.{h,m,mm}'
+    s.tvos.dependency 'mParticle-Apple-SDK/mParticle', '~> 7.7.3'
     s.tvos.frameworks = 'SystemConfiguration'
     s.tvos.dependency 'OptimizelySDKTVOS', '~> 2.1.3'
     

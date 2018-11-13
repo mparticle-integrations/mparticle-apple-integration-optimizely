@@ -12,6 +12,7 @@
 		D308518E219B2CED00D1C15A /* mParticle_Optimizely_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D3085180219B2CEC00D1C15A /* mParticle_Optimizely_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3085195219B447600D1C15A /* MPKitOptimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD4C217F67BC00688E56 /* MPKitOptimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3085196219B447900D1C15A /* MPKitOptimizely.m in Sources */ = {isa = PBXBuildFile; fileRef = D316BD4D217F67BC00688E56 /* MPKitOptimizely.m */; };
+		D308519A219B645B00D1C15A /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3085199219B645B00D1C15A /* OCMock.framework */; };
 		D316BD3C217F670600688E56 /* mParticle_Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD32217F670500688E56 /* mParticle_Optimizely.framework */; };
 		D316BD41217F670600688E56 /* mParticle_OptimizelyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D316BD40217F670600688E56 /* mParticle_OptimizelyTests.m */; };
 		D316BD43217F670600688E56 /* mParticle_Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD35217F670500688E56 /* mParticle_Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,6 +58,8 @@
 		D3085186219B2CEC00D1C15A /* mParticle_Optimizely_tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mParticle_Optimizely_tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D308518B219B2CED00D1C15A /* mParticle_Optimizely_tvOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mParticle_Optimizely_tvOSTests.m; sourceTree = "<group>"; };
 		D308518D219B2CED00D1C15A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3085197219B605900D1C15A /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
+		D3085199219B645B00D1C15A /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
 		D316BD32217F670500688E56 /* mParticle_Optimizely.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mParticle_Optimizely.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D316BD35217F670500688E56 /* mParticle_Optimizely.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mParticle_Optimizely.h; sourceTree = "<group>"; };
 		D316BD36217F670600688E56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 				D316BD6D217F716200688E56 /* OptimizelySDKUserProfileService.framework in Frameworks */,
 				D316BD75217F716200688E56 /* OptimizelySDKShared.framework in Frameworks */,
 				D316BD6F217F716200688E56 /* OptimizelySDKiOS.framework in Frameworks */,
+				D308519A219B645B00D1C15A /* OCMock.framework in Frameworks */,
 				D316BD65217F710400688E56 /* mParticle_Apple_SDK.framework in Frameworks */,
 				D316BD3C217F670600688E56 /* mParticle_Optimizely.framework in Frameworks */,
 				D316BD73217F716200688E56 /* OptimizelySDKDatafileManager.framework in Frameworks */,
@@ -152,6 +156,7 @@
 		D316BD28217F670500688E56 = {
 			isa = PBXGroup;
 			children = (
+				D3085199219B645B00D1C15A /* OCMock.framework */,
 				D316BD78217F73F700688E56 /* OptimizelySDKTVOS.framework */,
 				D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */,
 				D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */,
@@ -203,6 +208,7 @@
 		D316BD51217F6D8A00688E56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3085197219B605900D1C15A /* OCMock.framework */,
 				D316BD60217F6DC800688E56 /* mParticle_Apple_SDK.framework */,
 				D316BD5E217F6DAA00688E56 /* mParticle_Apple_SDK.framework.dSYM */,
 				D316BD56217F6D8B00688E56 /* OptimizelySDKCore.framework */,
