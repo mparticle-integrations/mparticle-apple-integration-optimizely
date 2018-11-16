@@ -32,6 +32,21 @@
 		D316BD75217F716200688E56 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */; };
 		D316BD76217F716200688E56 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
 		D316BD77217F716200688E56 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
+		D33B9161219F231800C3D936 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */; };
+		D33B9162219F231900C3D936 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */; };
+		D33B9163219F234600C3D936 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD78217F73F700688E56 /* OptimizelySDKTVOS.framework */; };
+		D33B9164219F234700C3D936 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD78217F73F700688E56 /* OptimizelySDKTVOS.framework */; };
+		D33B9165219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */; };
+		D33B9166219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */; };
+		D33B9167219F2F9A00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */; };
+		D33B9168219F2F9B00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */; };
+		D33B9169219F2FA400C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */; };
+		D33B916A219F2FA500C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */; };
+		D33B916B219F2FAA00C3D936 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
+		D33B916C219F2FAB00C3D936 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
+		D33B916D219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */; };
+		D33B916E219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */; };
+		D33B916F219F2FD500C3D936 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3085199219B645B00D1C15A /* OCMock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +106,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33B9161219F231800C3D936 /* mParticle_Apple_SDK.framework in Frameworks */,
+				D33B9165219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */,
+				D33B916B219F2FAA00C3D936 /* OptimizelySDKCore.framework in Frameworks */,
+				D33B9169219F2FA400C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */,
+				D33B9163219F234600C3D936 /* OptimizelySDKTVOS.framework in Frameworks */,
+				D33B916D219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */,
+				D33B9167219F2F9A00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +120,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33B9168219F2F9B00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
+				D33B9166219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */,
+				D33B9162219F231900C3D936 /* mParticle_Apple_SDK.framework in Frameworks */,
+				D33B916C219F2FAB00C3D936 /* OptimizelySDKCore.framework in Frameworks */,
+				D33B916F219F2FD500C3D936 /* OCMock.framework in Frameworks */,
+				D33B9164219F234700C3D936 /* OptimizelySDKTVOS.framework in Frameworks */,
 				D3085187219B2CED00D1C15A /* mParticle_Optimizely_tvOS.framework in Frameworks */,
+				D33B916E219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */,
+				D33B916A219F2FA500C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +480,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = mParticle_Optimizely_tvOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -476,6 +510,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = mParticle_Optimizely_tvOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -497,6 +535,11 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = mParticle_Optimizely_tvOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -516,6 +559,11 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				INFOPLIST_FILE = mParticle_Optimizely_tvOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

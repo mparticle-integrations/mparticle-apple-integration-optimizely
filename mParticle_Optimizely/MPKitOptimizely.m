@@ -33,6 +33,12 @@
 #import "OptimizelySDKTVOS.h"
 #endif
 
+#if defined(__has_include) && __has_include(<OptimizelySDKShared/OptimizelySDKShared.h>)
+#import <OptimizelySDKShared/OptimizelySDKShared.h>
+#else
+#import "OptimizelySDKShared.h"
+#endif
+
 #endif
 
 #if defined(__has_include) && __has_include(<OptimizelySDKDatafileManager/OPTLYDatafileManager.h>)
@@ -40,6 +46,8 @@
 #else
 #import "OPTLYDatafileManager.h"
 #endif
+
+
 
 NSString *const optimizelyCustomEventName = @"Optimizely.EventName";
 NSString *const optimizelyTrackedValue = @"Optimizely.Value";
