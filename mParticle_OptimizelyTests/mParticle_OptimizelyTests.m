@@ -14,7 +14,7 @@
 
 static NSString *const oiAPIKey = @"projectId";
 static NSString *const oiEventInterval = @"eventInterval";
-static NSString *const oiDataFileInterval = @"eventInterval";
+static NSString *const oiDataFileInterval = @"datafileInterval";
 static NSString *const oiuserIdKey = @"userIdField";
 
 static NSString *const oiuserIdCustomerIDValue = @"customerId";
