@@ -1,2 +1,2 @@
 github "optimizely/objective-c-sdk" ~> 2.1.3
-github "mparticle/mparticle-apple-sdk" ~> 7.8.0
+github "mparticle/mparticle-apple-sdk" ~> 7.9.0
