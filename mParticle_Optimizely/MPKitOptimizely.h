@@ -30,8 +30,8 @@ extern NSString * _Nonnull const optimizelyCustomUserId;
 @class OPTLYClient;
 @class OPTLYVariation;
 
-extern NSString *const MPKitOptimizelyEventName;
-extern NSString *const MPKitOptimizelyEventKeyValue;
+extern NSString * _Nonnull const MPKitOptimizelyEventName;
+extern NSString * _Nonnull const MPKitOptimizelyEventKeyValue;
 
 @interface MPKitOptimizely : NSObject <MPKitProtocol>
 
@@ -40,7 +40,7 @@ extern NSString *const MPKitOptimizelyEventKeyValue;
 @property (nonatomic, unsafe_unretained, readonly) BOOL started;
 @property (nonatomic, strong, nullable) MPKitAPI *kitApi;
 
-- (OPTLYVariation *)variationForExperimentKey:(nonnull NSString *)key customUserId:(nullable NSString *)customUserID;
-+ (OPTLYClient *)optimizelyClient;
-+ (void)setOptimizelyClient:(OPTLYClient *)client;
+- (OPTLYVariation *_Nullable)variationForExperimentKey:(nonnull NSString *)key customUserId:(nullable NSString *)customUserID;
++ (OPTLYClient *_Nullable)optimizelyClient;
++ (void)setOptimizelyClient:(OPTLYClient *_Nullable)client;
 @end
