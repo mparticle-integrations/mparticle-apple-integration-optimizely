@@ -22,5 +22,8 @@
 	},
 	{
 		"7.9.0": "https://github.com/mparticle-integrations/mparticle-apple-integration-optimizely/releases/download/7.9.0/mParticle_Optimizely.framework.zip"
+	},
+	{
+		"7.9.1": "https://github.com/mparticle-integrations/mparticle-apple-integration-optimizely/releases/download/7.9.1/mParticle_Optimizely.framework.zip"
 	}
 ]
