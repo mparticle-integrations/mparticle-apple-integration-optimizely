@@ -83,7 +83,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     NSNumber *eventInterval = self.configuration[oiEventInterval];
     NSNumber *dataFileInterval = self.configuration[oiDataFileInterval];
-
+    
     _configuration = configuration;
     
     if (MPKitOptimizelyClient == nil) {
@@ -124,7 +124,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     } else {
         _started = YES;
     }
-
+    
     return [self execStatus:MPKitReturnCodeSuccess];
 }
 
@@ -141,12 +141,12 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     if (!userId) {
         return nil;
     }
-
+    
     NSDictionary *transformedUserInfo = [currentUser.userAttributes transformValuesToString];
     
     return [MPKitOptimizelyClient activate:key
                                     userId:userId
-                 attributes:transformedUserInfo];
+                                attributes:transformedUserInfo];
 }
 
 - (MPKitExecStatus *)logCommerceEvent:(MPCommerceEvent *)commerceEvent {
@@ -162,7 +162,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     for (MPCommerceEventInstruction *commerceEventInstruction in expandedInstructions) {
         NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
-
+        
         if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
             
             NSString *customCommerceEventName;
@@ -193,9 +193,9 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
                 userId = customFlags[optimizelyCustomUserId][0];
             }
         }
-                
+        
         NSDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString];
-
+        
         [MPKitOptimizelyClient track:commerceEventInstruction.event.name
                               userId:userId
                           attributes:currentUser.userAttributes
@@ -215,7 +215,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     if (!userId) {
         return [self execStatus:MPKitReturnCodeFail];
     }
-
+    
     NSDictionary<NSString *, __kindof NSArray<NSString *> *> *customFlags = event.customFlags;
     
     NSString *customTrackedValue;

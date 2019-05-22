@@ -332,7 +332,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     OCMStub([mockKitAPI getCurrentUserWithKit:OCMOCK_ANY]).andReturn(mockUser);
     
     kitInstance.kitApi = mockKitAPI;
-
+    
     execStatus = [kitInstance logEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
@@ -611,7 +611,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     attributes.shipping = @3;
     
     event.transactionAttributes = attributes;
-
+    
     [event addCustomFlag:@"testMapping" withKey:optimizelyCustomEventName];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
