@@ -13,7 +13,7 @@ This repository contains the [Optimizely](https://www.optimizely.com) integratio
     OR
 
     ```
-    github 'mparticle-integrations/mparticle-apple-integration-optimizely' ~> 7.0
+    github "mparticle-integrations/mparticle-apple-integration-optimizely" ~> 7.0
     ```
 
 2. Follow the mParticle iOS SDK [quick-start](https://github.com/mParticle/mparticle-apple-sdk), then rebuild and launch your app, and verify that you see `"Included kits: { Optimizely }"` in your Xcode console 
