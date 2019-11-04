@@ -172,7 +172,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
                 }
             }
             
-            NSDictionary *transactionAttributes = commerceEventInstruction.event.info;
+            NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
             
             if (commerceEvent.transactionAttributes.revenue != nil) {
                 NSNumber *revenueInCents = [NSNumber numberWithLong:[commerceEvent.transactionAttributes.revenue integerValue]*100];
@@ -229,7 +229,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     }
     
     NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
-    NSDictionary *transactionAttributes = event.info;
+    NSDictionary *transactionAttributes = event.customAttributes;
     
     if (customTrackedValue != nil) {
         [baseProductAttributes setObject:customTrackedValue forKey: @"value"];
