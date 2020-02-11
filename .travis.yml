@@ -1,9 +1,9 @@
-osx_image: xcode10
+osx_image: xcode11
 language: objective-c
 script:
-- sudo gem install cocoapods -v 1.5.3
+- sudo gem install cocoapods -v 1.8.4
 - travis_retry pod repo update > /dev/null
 - pod lib lint --use-libraries --allow-warnings || pod lib lint --allow-warnings
 - carthage update
 - carthage build --no-skip-current && carthage archive
-- xcodebuild -project mParticle-Optimizely.xcodeproj -scheme mParticle_OptimizelyTests -destination 'platform=iOS Simulator,OS=12.0,name=iPhone XS' test
+- xcodebuild -project mParticle-Optimizely.xcworkspace -scheme mParticle_OptimizelyTests -destination 'platform=iOS Simulator,OS=12.0,name=iPhone XS' test
