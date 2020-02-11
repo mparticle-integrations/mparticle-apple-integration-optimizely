@@ -7,46 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D3085187219B2CED00D1C15A /* mParticle_Optimizely_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D308517E219B2CEC00D1C15A /* mParticle_Optimizely_tvOS.framework */; };
 		D308518C219B2CED00D1C15A /* mParticle_Optimizely_tvOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D308518B219B2CED00D1C15A /* mParticle_Optimizely_tvOSTests.m */; };
 		D308518E219B2CED00D1C15A /* mParticle_Optimizely_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D3085180219B2CEC00D1C15A /* mParticle_Optimizely_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3085195219B447600D1C15A /* MPKitOptimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD4C217F67BC00688E56 /* MPKitOptimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3085196219B447900D1C15A /* MPKitOptimizely.m in Sources */ = {isa = PBXBuildFile; fileRef = D316BD4D217F67BC00688E56 /* MPKitOptimizely.m */; };
-		D308519A219B645B00D1C15A /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3085199219B645B00D1C15A /* OCMock.framework */; };
 		D316BD3C217F670600688E56 /* mParticle_Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD32217F670500688E56 /* mParticle_Optimizely.framework */; };
 		D316BD41217F670600688E56 /* mParticle_OptimizelyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D316BD40217F670600688E56 /* mParticle_OptimizelyTests.m */; };
 		D316BD43217F670600688E56 /* mParticle_Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD35217F670500688E56 /* mParticle_Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D316BD4E217F67BC00688E56 /* MPKitOptimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD4C217F67BC00688E56 /* MPKitOptimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D316BD4F217F67BC00688E56 /* MPKitOptimizely.m in Sources */ = {isa = PBXBuildFile; fileRef = D316BD4D217F67BC00688E56 /* MPKitOptimizely.m */; };
-		D316BD64217F710400688E56 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */; };
-		D316BD65217F710400688E56 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */; };
-		D316BD6C217F716200688E56 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */; };
-		D316BD6D217F716200688E56 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */; };
-		D316BD6E217F716200688E56 /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD67217F716200688E56 /* OptimizelySDKiOS.framework */; };
-		D316BD6F217F716200688E56 /* OptimizelySDKiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD67217F716200688E56 /* OptimizelySDKiOS.framework */; };
-		D316BD70217F716200688E56 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */; };
-		D316BD71217F716200688E56 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */; };
-		D316BD72217F716200688E56 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */; };
-		D316BD73217F716200688E56 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */; };
-		D316BD74217F716200688E56 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */; };
-		D316BD75217F716200688E56 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */; };
-		D316BD76217F716200688E56 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
-		D316BD77217F716200688E56 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
-		D33B9161219F231800C3D936 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */; };
-		D33B9162219F231900C3D936 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */; };
-		D33B9163219F234600C3D936 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD78217F73F700688E56 /* OptimizelySDKTVOS.framework */; };
-		D33B9164219F234700C3D936 /* OptimizelySDKTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD78217F73F700688E56 /* OptimizelySDKTVOS.framework */; };
-		D33B9165219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */; };
-		D33B9166219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */; };
-		D33B9167219F2F9A00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */; };
-		D33B9168219F2F9B00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */; };
-		D33B9169219F2FA400C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */; };
-		D33B916A219F2FA500C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */; };
-		D33B916B219F2FAA00C3D936 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
-		D33B916C219F2FAB00C3D936 /* OptimizelySDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */; };
-		D33B916D219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */; };
-		D33B916E219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */; };
-		D33B916F219F2FD500C3D936 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3085199219B645B00D1C15A /* OCMock.framework */; };
+		D377138D23FEE08E00CF4773 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D377138C23FEE08E00CF4773 /* mParticle_Apple_SDK.framework */; };
+		D377139123FEE09F00CF4773 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D377139023FEE09F00CF4773 /* Optimizely.framework */; };
+		D37713942404247E00CF4773 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713932404247E00CF4773 /* Optimizely.framework */; };
+		D37713962404249200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */; };
+		D377139824042B1000CF4773 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713932404247E00CF4773 /* Optimizely.framework */; };
+		D377139924042B2200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */; };
+		D377139B24042B2200CF4773 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D377139A24042B2200CF4773 /* OCMock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +49,6 @@
 		D3085186219B2CEC00D1C15A /* mParticle_Optimizely_tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mParticle_Optimizely_tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D308518B219B2CED00D1C15A /* mParticle_Optimizely_tvOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mParticle_Optimizely_tvOSTests.m; sourceTree = "<group>"; };
 		D308518D219B2CED00D1C15A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3085197219B605900D1C15A /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
-		D3085199219B645B00D1C15A /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
 		D316BD32217F670500688E56 /* mParticle_Optimizely.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mParticle_Optimizely.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D316BD35217F670500688E56 /* mParticle_Optimizely.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mParticle_Optimizely.h; sourceTree = "<group>"; };
 		D316BD36217F670600688E56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,22 +57,11 @@
 		D316BD42217F670600688E56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D316BD4C217F67BC00688E56 /* MPKitOptimizely.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPKitOptimizely.h; sourceTree = "<group>"; };
 		D316BD4D217F67BC00688E56 /* MPKitOptimizely.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPKitOptimizely.m; sourceTree = "<group>"; };
-		D316BD52217F6D8B00688E56 /* OptimizelySDKDatafileManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKDatafileManager.framework; path = Carthage/Build/iOS/OptimizelySDKDatafileManager.framework; sourceTree = "<group>"; };
-		D316BD53217F6D8B00688E56 /* OptimizelySDKiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKiOS.framework; path = Carthage/Build/iOS/OptimizelySDKiOS.framework; sourceTree = "<group>"; };
-		D316BD54217F6D8B00688E56 /* OptimizelySDKShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKShared.framework; path = Carthage/Build/iOS/OptimizelySDKShared.framework; sourceTree = "<group>"; };
-		D316BD55217F6D8B00688E56 /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfileService.framework; path = Carthage/Build/iOS/OptimizelySDKUserProfileService.framework; sourceTree = "<group>"; };
-		D316BD56217F6D8B00688E56 /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKCore.framework; path = Carthage/Build/iOS/OptimizelySDKCore.framework; sourceTree = "<group>"; };
-		D316BD57217F6D8B00688E56 /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKEventDispatcher.framework; path = Carthage/Build/iOS/OptimizelySDKEventDispatcher.framework; sourceTree = "<group>"; };
-		D316BD5E217F6DAA00688E56 /* mParticle_Apple_SDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = mParticle_Apple_SDK.framework.dSYM; path = Carthage/Build/iOS/mParticle_Apple_SDK.framework.dSYM; sourceTree = "<group>"; };
-		D316BD60217F6DC800688E56 /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/iOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
-		D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/iOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
-		D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKUserProfileService.framework; path = Carthage/Build/iOS/OptimizelySDKUserProfileService.framework; sourceTree = "<group>"; };
-		D316BD67217F716200688E56 /* OptimizelySDKiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKiOS.framework; path = Carthage/Build/iOS/OptimizelySDKiOS.framework; sourceTree = "<group>"; };
-		D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKEventDispatcher.framework; path = Carthage/Build/iOS/OptimizelySDKEventDispatcher.framework; sourceTree = "<group>"; };
-		D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKDatafileManager.framework; path = Carthage/Build/iOS/OptimizelySDKDatafileManager.framework; sourceTree = "<group>"; };
-		D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKShared.framework; path = Carthage/Build/iOS/OptimizelySDKShared.framework; sourceTree = "<group>"; };
-		D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKCore.framework; path = Carthage/Build/iOS/OptimizelySDKCore.framework; sourceTree = "<group>"; };
-		D316BD78217F73F700688E56 /* OptimizelySDKTVOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptimizelySDKTVOS.framework; path = Carthage/Build/tvOS/OptimizelySDKTVOS.framework; sourceTree = "<group>"; };
+		D377138C23FEE08E00CF4773 /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/iOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
+		D377139023FEE09F00CF4773 /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Optimizely.framework; path = Carthage/Build/iOS/Optimizely.framework; sourceTree = "<group>"; };
+		D37713932404247E00CF4773 /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Optimizely.framework; path = Carthage/Build/tvOS/Optimizely.framework; sourceTree = "<group>"; };
+		D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/tvOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
+		D377139A24042B2200CF4773 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/tvOS/OCMock.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,13 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B9161219F231800C3D936 /* mParticle_Apple_SDK.framework in Frameworks */,
-				D33B9165219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */,
-				D33B916B219F2FAA00C3D936 /* OptimizelySDKCore.framework in Frameworks */,
-				D33B9169219F2FA400C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */,
-				D33B9163219F234600C3D936 /* OptimizelySDKTVOS.framework in Frameworks */,
-				D33B916D219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */,
-				D33B9167219F2F9A00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
+				D37713962404249200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */,
+				D37713942404247E00CF4773 /* Optimizely.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,15 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B9168219F2F9B00C3D936 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
-				D33B9166219F236700C3D936 /* OptimizelySDKShared.framework in Frameworks */,
-				D33B9162219F231900C3D936 /* mParticle_Apple_SDK.framework in Frameworks */,
-				D33B916C219F2FAB00C3D936 /* OptimizelySDKCore.framework in Frameworks */,
-				D33B916F219F2FD500C3D936 /* OCMock.framework in Frameworks */,
-				D33B9164219F234700C3D936 /* OptimizelySDKTVOS.framework in Frameworks */,
-				D3085187219B2CED00D1C15A /* mParticle_Optimizely_tvOS.framework in Frameworks */,
-				D33B916E219F2FBA00C3D936 /* OptimizelySDKUserProfileService.framework in Frameworks */,
-				D33B916A219F2FA500C3D936 /* OptimizelySDKDatafileManager.framework in Frameworks */,
+				D377139B24042B2200CF4773 /* OCMock.framework in Frameworks */,
+				D377139924042B2200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */,
+				D377139824042B1000CF4773 /* Optimizely.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,13 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D316BD6C217F716200688E56 /* OptimizelySDKUserProfileService.framework in Frameworks */,
-				D316BD64217F710400688E56 /* mParticle_Apple_SDK.framework in Frameworks */,
-				D316BD72217F716200688E56 /* OptimizelySDKDatafileManager.framework in Frameworks */,
-				D316BD76217F716200688E56 /* OptimizelySDKCore.framework in Frameworks */,
-				D316BD6E217F716200688E56 /* OptimizelySDKiOS.framework in Frameworks */,
-				D316BD74217F716200688E56 /* OptimizelySDKShared.framework in Frameworks */,
-				D316BD70217F716200688E56 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
+				D377139123FEE09F00CF4773 /* Optimizely.framework in Frameworks */,
+				D377138D23FEE08E00CF4773 /* mParticle_Apple_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,15 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D316BD77217F716200688E56 /* OptimizelySDKCore.framework in Frameworks */,
-				D316BD71217F716200688E56 /* OptimizelySDKEventDispatcher.framework in Frameworks */,
-				D316BD6D217F716200688E56 /* OptimizelySDKUserProfileService.framework in Frameworks */,
-				D316BD75217F716200688E56 /* OptimizelySDKShared.framework in Frameworks */,
-				D316BD6F217F716200688E56 /* OptimizelySDKiOS.framework in Frameworks */,
-				D308519A219B645B00D1C15A /* OCMock.framework in Frameworks */,
-				D316BD65217F710400688E56 /* mParticle_Apple_SDK.framework in Frameworks */,
 				D316BD3C217F670600688E56 /* mParticle_Optimizely.framework in Frameworks */,
-				D316BD73217F716200688E56 /* OptimizelySDKDatafileManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,21 +125,12 @@
 		D316BD28217F670500688E56 = {
 			isa = PBXGroup;
 			children = (
-				D3085199219B645B00D1C15A /* OCMock.framework */,
-				D316BD78217F73F700688E56 /* OptimizelySDKTVOS.framework */,
-				D316BD6B217F716200688E56 /* OptimizelySDKCore.framework */,
-				D316BD69217F716200688E56 /* OptimizelySDKDatafileManager.framework */,
-				D316BD68217F716200688E56 /* OptimizelySDKEventDispatcher.framework */,
-				D316BD67217F716200688E56 /* OptimizelySDKiOS.framework */,
-				D316BD6A217F716200688E56 /* OptimizelySDKShared.framework */,
-				D316BD66217F716200688E56 /* OptimizelySDKUserProfileService.framework */,
-				D316BD63217F710400688E56 /* mParticle_Apple_SDK.framework */,
 				D316BD34217F670500688E56 /* mParticle_Optimizely */,
 				D316BD3F217F670600688E56 /* mParticle_OptimizelyTests */,
 				D308517F219B2CEC00D1C15A /* mParticle_Optimizely_tvOS */,
 				D308518A219B2CED00D1C15A /* mParticle_Optimizely_tvOSTests */,
 				D316BD33217F670500688E56 /* Products */,
-				D316BD51217F6D8A00688E56 /* Frameworks */,
+				D377138B23FEE08E00CF4773 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,18 +165,14 @@
 			path = mParticle_OptimizelyTests;
 			sourceTree = "<group>";
 		};
-		D316BD51217F6D8A00688E56 /* Frameworks */ = {
+		D377138B23FEE08E00CF4773 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D3085197219B605900D1C15A /* OCMock.framework */,
-				D316BD60217F6DC800688E56 /* mParticle_Apple_SDK.framework */,
-				D316BD5E217F6DAA00688E56 /* mParticle_Apple_SDK.framework.dSYM */,
-				D316BD56217F6D8B00688E56 /* OptimizelySDKCore.framework */,
-				D316BD52217F6D8B00688E56 /* OptimizelySDKDatafileManager.framework */,
-				D316BD57217F6D8B00688E56 /* OptimizelySDKEventDispatcher.framework */,
-				D316BD53217F6D8B00688E56 /* OptimizelySDKiOS.framework */,
-				D316BD54217F6D8B00688E56 /* OptimizelySDKShared.framework */,
-				D316BD55217F6D8B00688E56 /* OptimizelySDKUserProfileService.framework */,
+				D377139A24042B2200CF4773 /* OCMock.framework */,
+				D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */,
+				D377139023FEE09F00CF4773 /* Optimizely.framework */,
+				D37713932404247E00CF4773 /* Optimizely.framework */,
+				D377138C23FEE08E00CF4773 /* mParticle_Apple_SDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -283,6 +209,7 @@
 				D308517A219B2CEC00D1C15A /* Frameworks */,
 				D308517B219B2CEC00D1C15A /* Headers */,
 				D308517C219B2CEC00D1C15A /* Resources */,
+				D345E7EB23FDAADD0071FF8C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -300,6 +227,7 @@
 				D3085182219B2CEC00D1C15A /* Sources */,
 				D3085183219B2CEC00D1C15A /* Frameworks */,
 				D3085184219B2CEC00D1C15A /* Resources */,
+				D37713972404282100CF4773 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -318,6 +246,7 @@
 				D316BD2D217F670500688E56 /* Sources */,
 				D316BD2E217F670500688E56 /* Frameworks */,
 				D316BD2F217F670500688E56 /* Headers */,
+				D345E7EA23FDAA9E0071FF8C /* Carthage */,
 				D316BD30217F670500688E56 /* Resources */,
 			);
 			buildRules = (
@@ -353,7 +282,7 @@
 		D316BD29217F670500688E56 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = mparticle;
 				TargetAttributes = {
 					D308517D219B2CEC00D1C15A = {
@@ -376,6 +305,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D316BD28217F670500688E56;
 			productRefGroup = D316BD33217F670500688E56 /* Products */;
@@ -420,6 +350,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D345E7EA23FDAA9E0071FF8C /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Optimizely.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/mParticle_Apple_SDK.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/mParticle_Apple_SDK.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Optimizely.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		D345E7EB23FDAADD0071FF8C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/Optimizely.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/mParticle_Apple_SDK.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/mParticle_Apple_SDK.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Optimizely.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		D37713972404282100CF4773 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/OCMock.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Optimizely.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/mParticle_Apple_SDK.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OCMock.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/mParticle_Apple_SDK.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Optimizely.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D3085179219B2CEC00D1C15A /* Sources */ = {
@@ -473,7 +472,7 @@
 		D3085190219B2CED00D1C15A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
@@ -483,6 +482,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = mParticle_Optimizely_tvOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -503,7 +503,7 @@
 		D3085191219B2CED00D1C15A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
@@ -513,6 +513,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = mParticle_Optimizely_tvOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -533,6 +534,7 @@
 		D3085193219B2CED00D1C15A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -557,6 +559,7 @@
 		D3085194219B2CED00D1C15A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -697,7 +700,7 @@
 		D316BD47217F670600688E56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
@@ -726,7 +729,7 @@
 		D316BD48217F670600688E56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
@@ -755,6 +758,7 @@
 		D316BD4A217F670600688E56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -777,6 +781,7 @@
 		D316BD4B217F670600688E56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
 				FRAMEWORK_SEARCH_PATHS = (

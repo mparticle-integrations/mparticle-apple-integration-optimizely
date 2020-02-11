@@ -1,10 +1,10 @@
 #import <XCTest/XCTest.h>
 #import "MPKitOptimizely.h"
 #import <OCMock/OCMock.h>
-#if TARGET_OS_IOS == 1
-#import <OptimizelySDKiOS/OptimizelySDKiOS.h>
-#elif TARGET_OS_TV == 1
-#import <OptimizelySDKTVOS/OptimizelySDKTVOS.h>
+#if defined(__has_include) && __has_include(<Optimizely/Optimizely-Swift.h>)
+#import <Optimizely/Optimizely-Swift.h>
+#else
+#import "Optimizely-Swift.h"
 #endif
 #if defined(__has_include) && __has_include(<mParticle_Apple_SDK/mParticle.h>)
 #import <mParticle_Apple_SDK/mParticle.h>
@@ -254,7 +254,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testSetManualClient {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     [MPKitOptimizely setOptimizelyClient:testClient];
     
     NSDictionary *configuration = @{
@@ -290,14 +290,14 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
-    OPTLYClient *testClient;
+    OptimizelyClient *testClient;
     [MPKitOptimizely setOptimizelyClient:testClient];
     
     XCTAssertNotEqualObjects(testClient, [MPKitOptimizely optimizelyClient]);
 }
 
 - (void)testlogEvent {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -321,7 +321,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     MPEvent *event = [[MPEvent alloc] initWithName:@"test" type:MPEventTypeClick];
     
-    [[mockClient expect] track:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY];
+    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);
@@ -333,8 +333,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    execStatus = [kitInstance logEvent:event];
-    
+    execStatus = [kitInstance logBaseEvent:event];
+     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
     [mockClient verify];
@@ -343,7 +343,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testlogEventFail {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -375,20 +375,20 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient reject] track:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY];
-    
-    execStatus = [kitInstance logEvent:event];
+    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
+
+    execStatus = [kitInstance logBaseEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeFail);
     
-    [mockClient verify];
+    [mockClient reject];
     
     [mockClient stopMocking];
 }
 
 - (void)testlogEventWithCustomName {
     //Custom name mapping should not apply to regular events
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -423,9 +423,9 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient reject] track:@"testMapping" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY];
-    
-    execStatus = [kitInstance logEvent:event];
+    [[mockClient expect] trackWithEventKey:@"testMapping" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
+
+    execStatus = [kitInstance logBaseEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
@@ -435,7 +435,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testlogEventWithValue {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -470,9 +470,9 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] track:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:@{@"value": @"test"}];
+    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:@{@"value": @"test"} error:nil];
     
-    execStatus = [kitInstance logEvent:event];
+    execStatus = [kitInstance logBaseEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
@@ -482,7 +482,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testlogEventWithCustomId {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -518,9 +518,9 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] track:OCMOCK_ANY userId:@"User65656" attributes:OCMOCK_ANY eventTags:@{@"value": @"test"}];
+    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:@"User65656" attributes:OCMOCK_ANY eventTags:@{@"value": @"test"} error:nil];
     
-    execStatus = [kitInstance logEvent:event];
+    execStatus = [kitInstance logBaseEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
@@ -530,7 +530,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testlogCommerceEvent {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -566,10 +566,10 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] track:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY];
-    [[mockClient expect] track:@"eCommerce - purchase - Total" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY];
+    [[mockClient expect] trackWithEventKey:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
+    [[mockClient expect] trackWithEventKey:@"eCommerce - purchase - Total" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
     
-    execStatus = [kitInstance logCommerceEvent:event];
+    execStatus = [kitInstance logBaseEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
@@ -579,7 +579,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testlogCommerceEventWithCustomNameAndRevenue {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -624,12 +624,12 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] track:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY];
-    [[mockClient expect] track:@"testMapping" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:[OCMArg checkWithBlock:^BOOL(NSDictionary<NSString *, NSString *> *value) {
+    [[mockClient expect] trackWithEventKey:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
+    [[mockClient expect] trackWithEventKey:@"testMapping" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:[OCMArg checkWithBlock:^BOOL(NSDictionary<NSString *, NSString *> *value) {
         return [value[@"revenue"] isEqual:@"1300"];
-    }]];
+    }] error:nil];
     
-    execStatus = [kitInstance logCommerceEvent:event];
+    execStatus = [kitInstance logBaseEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
@@ -639,7 +639,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testlogCommerceEventWithCustomNameRevenueAndUserId {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -685,12 +685,13 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] track:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY];
-    [[mockClient expect] track:@"testMapping" userId:@"User65656" attributes:OCMOCK_ANY eventTags:[OCMArg checkWithBlock:^BOOL(NSDictionary<NSString *, NSString *> *value) {
+    [[mockClient expect] trackWithEventKey:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
+    [[mockClient expect] trackWithEventKey:@"testMapping" userId:@"User65656" attributes:OCMOCK_ANY eventTags:[OCMArg checkWithBlock:^BOOL(NSDictionary<NSString *, NSString *> *value)
+    {
         return [value[@"revenue"] isEqual:@"1300"];
-    }]];
+    }] error:nil];
     
-    execStatus = [kitInstance logCommerceEvent:event];
+    execStatus = [kitInstance logBaseEvent:event];
     
     XCTAssertEqual(execStatus.returnCode, MPKitReturnCodeSuccess);
     
@@ -700,7 +701,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testVariation {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -722,7 +723,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     XCTAssertEqualObjects(mockClient, [MPKitOptimizely optimizelyClient]);
     
-    [[mockClient expect] activate:@"variation" userId:@"4" attributes:OCMOCK_ANY];
+    [[mockClient expect] activateWithExperimentKey:@"variation" userId:@"4" attributes:OCMOCK_ANY error:nil];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);
@@ -734,7 +735,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [kitInstance variationForExperimentKey:@"variation" customUserId:nil];
+    [kitInstance activateWithExperimentKey:@"variation" customUserId:nil];
     
     [mockClient verify];
     
@@ -742,7 +743,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 }
 
 - (void)testVariationWithCustomId {
-    OPTLYClient *testClient = [[OPTLYClient alloc] init];
+    OptimizelyClient *testClient = [[OptimizelyClient alloc] initWithSdkKey:@"test"];
     id mockClient = OCMPartialMock(testClient);
     [MPKitOptimizely setOptimizelyClient:mockClient];
     
@@ -764,7 +765,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     XCTAssertEqualObjects(mockClient, [MPKitOptimizely optimizelyClient]);
     
-    [[mockClient expect] activate:@"variation" userId:@"loser" attributes:OCMOCK_ANY];
+    [[mockClient expect] activateWithExperimentKey:@"variation" userId:@"loser" attributes:OCMOCK_ANY error:nil];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);
@@ -776,7 +777,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [kitInstance variationForExperimentKey:@"variation" customUserId:@"loser"];
+    [kitInstance activateWithExperimentKey:@"variation" customUserId:@"loser"];
     
     [mockClient verify];
     
