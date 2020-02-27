@@ -27,6 +27,10 @@ static NSString *const oiuserIdKey = @"userIdField";
 
 static NSString *const oiuserIdCustomerIDValue = @"customerId";
 static NSString *const oiuserIdEmailValue = @"email";
+static NSString *const oiuserIdOther = @"otherid";
+static NSString *const oiuserIdOther2 = @"otherid2";
+static NSString *const oiuserIdOther3 = @"otherid3";
+static NSString *const oiuserIdOther4 = @"otherid4";
 static NSString *const oiuserIdMPIDValue = @"mpid";
 static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
 
@@ -220,6 +224,14 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             userId = currentUser.userIdentities[@(MPUserIdentityCustomerId)];
         } else if ([key isEqualToString:oiuserIdEmailValue] && currentUser.userIdentities[@(MPUserIdentityEmail)] != nil) {
             userId = currentUser.userIdentities[@(MPUserIdentityEmail)];
+        } else if ([key isEqualToString:oiuserIdOther] && currentUser.userIdentities[@(oiuserIdOther)] != nil) {
+            userId = currentUser.userIdentities[@(MPUserIdentityOther)];
+        } else if ([key isEqualToString:oiuserIdOther2] && currentUser.userIdentities[@(oiuserIdOther2)] != nil) {
+            userId = currentUser.userIdentities[@(MPUserIdentityOther2)];
+        } else if ([key isEqualToString:oiuserIdOther3] && currentUser.userIdentities[@(oiuserIdOther3)] != nil) {
+            userId = currentUser.userIdentities[@(MPUserIdentityOther3)];
+        } else if ([key isEqualToString:oiuserIdOther4] && currentUser.userIdentities[@(oiuserIdOther4)] != nil) {
+            userId = currentUser.userIdentities[@(MPUserIdentityOther4)];
         } else if ([key isEqualToString:oiuserIdMPIDValue] && currentUser.userId != nil) {
             userId = currentUser.userId != 0 ? [currentUser.userId stringValue] : @"0" ;
         } else if ([key isEqualToString:oiuserIdDeviceStampValue]) {
