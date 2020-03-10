@@ -6,14 +6,11 @@
 #import "mParticle.h"
 #endif
 
-extern NSString * _Nonnull const optimizelyCustomEventName;
-extern NSString * _Nonnull const optimizelyTrackedValue;
-extern NSString * _Nonnull const optimizelyCustomUserId;
-
 @class OptimizelyClient;
 
 extern NSString * _Nonnull const MPKitOptimizelyEventName;
 extern NSString * _Nonnull const MPKitOptimizelyEventKeyValue;
+extern NSString * _Nonnull const MPKitOptimizelyCustomUserId;
 
 @interface MPKitOptimizely : NSObject <MPKitProtocol>
 

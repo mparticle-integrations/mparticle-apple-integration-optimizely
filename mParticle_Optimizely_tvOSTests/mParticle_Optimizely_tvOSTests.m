@@ -418,7 +418,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     XCTAssertEqualObjects(mockClient, [MPKitOptimizely optimizelyClient]);
     
     MPEvent *event = [[MPEvent alloc] initWithName:@"test" type:MPEventTypeClick];
-    [event addCustomFlag:@"testMapping" withKey:optimizelyCustomEventName];
+    [event addCustomFlag:@"testMapping" withKey:MPKitOptimizelyEventName];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);
@@ -465,7 +465,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     XCTAssertEqualObjects(mockClient, [MPKitOptimizely optimizelyClient]);
     
     MPEvent *event = [[MPEvent alloc] initWithName:@"test" type:MPEventTypeClick];
-    [event addCustomFlag:@"test" withKey:optimizelyTrackedValue];
+    [event addCustomFlag:@"3" withKey:MPKitOptimizelyEventKeyValue];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);
@@ -477,7 +477,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:@{@"value": @"test"} error:nil];
+    NSNumber *testValue = [NSNumber numberWithInt:3];
+    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:@{@"value": testValue} error:nil];
     
     execStatus = [kitInstance logBaseEvent:event];
     
@@ -512,8 +513,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     XCTAssertEqualObjects(mockClient, [MPKitOptimizely optimizelyClient]);
     
     MPEvent *event = [[MPEvent alloc] initWithName:@"test" type:MPEventTypeClick];
-    [event addCustomFlag:@"test" withKey:optimizelyTrackedValue];
-    [event addCustomFlag:@"User65656" withKey:optimizelyCustomUserId];
+    [event addCustomFlag:@"3" withKey:MPKitOptimizelyEventKeyValue];
+    [event addCustomFlag:@"User65656" withKey:MPKitOptimizelyCustomUserId];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);
@@ -525,7 +526,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:@"User65656" attributes:OCMOCK_ANY eventTags:@{@"value": @"test"} error:nil];
+    NSNumber *testValue = [NSNumber numberWithInt:3];
+    [[mockClient expect] trackWithEventKey:OCMOCK_ANY userId:@"User65656" attributes:OCMOCK_ANY eventTags:@{@"value": testValue} error:nil];
     
     execStatus = [kitInstance logBaseEvent:event];
     
@@ -619,7 +621,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     event.transactionAttributes = attributes;
     
-    [event addCustomFlag:@"testMapping" withKey:optimizelyCustomEventName];
+    [event addCustomFlag:@"testMapping" withKey:MPKitOptimizelyEventName];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);
@@ -679,8 +681,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     event.transactionAttributes = attributes;
     
-    [event addCustomFlag:@"testMapping" withKey:optimizelyCustomEventName];
-    [event addCustomFlag:@"User65656" withKey:optimizelyCustomUserId];
+    [event addCustomFlag:@"testMapping" withKey:MPKitOptimizelyEventName];
+    [event addCustomFlag:@"User65656" withKey:MPKitOptimizelyCustomUserId];
     
     MPKitAPI *kitAPI = [[MPKitAPI alloc] init];
     id mockKitAPI = OCMPartialMock(kitAPI);

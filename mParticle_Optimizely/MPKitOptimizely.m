@@ -12,9 +12,9 @@
 @import Optimizely;
 #endif
 
-NSString *const optimizelyCustomEventName = @"Optimizely.EventName";
-NSString *const optimizelyTrackedValue = @"Optimizely.Value";
-NSString *const optimizelyCustomUserId = @"Optimizely.UserId";
+NSString *const MPKitOptimizelyEventName = @"Optimizely.EventName";
+NSString *const MPKitOptimizelyEventKeyValue = @"Optimizely.Value";
+NSString *const MPKitOptimizelyCustomUserId = @"Optimizely.UserId";
 
 @implementation MPKitOptimizely
 
@@ -131,8 +131,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             
             NSString *customCommerceEventName;
             if (customFlags) {
-                if (customFlags[optimizelyCustomEventName].count != 0) {
-                    customCommerceEventName = customFlags[optimizelyCustomEventName][0];
+                if (customFlags[MPKitOptimizelyEventName].count != 0) {
+                    customCommerceEventName = customFlags[MPKitOptimizelyEventName][0];
                 }
             }
             
@@ -153,8 +153,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
         }
         
         if (customFlags) {
-            if (customFlags[optimizelyCustomUserId].count != 0 & customFlags[optimizelyCustomUserId][0] != nil) {
-                userId = customFlags[optimizelyCustomUserId][0];
+            if (customFlags[MPKitOptimizelyCustomUserId].count != 0 & customFlags[MPKitOptimizelyCustomUserId][0] != nil) {
+                userId = customFlags[MPKitOptimizelyCustomUserId][0];
             }
         }
         
@@ -180,16 +180,18 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     NSDictionary<NSString *, __kindof NSArray<NSString *> *> *customFlags = event.customFlags;
     
     NSString *customEventName;
-    NSString *customTrackedValue;
+    NSNumber *customTrackedValue;
     if (customFlags) {
-        if (customFlags[optimizelyCustomEventName].count != 0) {
-            customEventName = customFlags[optimizelyCustomEventName][0];
+        if (customFlags[MPKitOptimizelyEventName].count != 0) {
+            customEventName = customFlags[MPKitOptimizelyEventName][0];
         }
-        if (customFlags[optimizelyTrackedValue].count != 0) {
-            customTrackedValue = customFlags[optimizelyTrackedValue][0];
+        if (customFlags[MPKitOptimizelyEventKeyValue].count != 0) {
+            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+            f.numberStyle = NSNumberFormatterDecimalStyle;
+            customTrackedValue = [f numberFromString:(NSString *)customFlags[MPKitOptimizelyEventKeyValue][0]];
         }
-        if (customFlags[optimizelyCustomUserId].count != 0 & customFlags[optimizelyCustomUserId][0] != nil) {
-            userId = customFlags[optimizelyCustomUserId][0];
+        if (customFlags[MPKitOptimizelyCustomUserId].count != 0 & customFlags[MPKitOptimizelyCustomUserId][0] != nil) {
+            userId = customFlags[MPKitOptimizelyCustomUserId][0];
         }
     }
     
@@ -207,10 +209,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     if (transactionAttributes) {
         [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
     }
-    
-    NSDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString];
-    
-    [optimizelyClient trackWithEventKey:event.name userId:userId attributes:currentUser.userAttributes eventTags:transformedEventInfo error:nil];
+        
+    [optimizelyClient trackWithEventKey:event.name userId:userId attributes:currentUser.userAttributes eventTags:baseProductAttributes error:nil];
     
     MPKitExecStatus *execStatus = [self execStatus:MPKitReturnCodeSuccess];
     return execStatus;
@@ -224,13 +224,13 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             userId = currentUser.userIdentities[@(MPUserIdentityCustomerId)];
         } else if ([key isEqualToString:oiuserIdEmailValue] && currentUser.userIdentities[@(MPUserIdentityEmail)] != nil) {
             userId = currentUser.userIdentities[@(MPUserIdentityEmail)];
-        } else if ([key isEqualToString:oiuserIdOther] && currentUser.userIdentities[@(oiuserIdOther)] != nil) {
+        } else if ([key isEqualToString:oiuserIdOther] && currentUser.userIdentities[@(MPUserIdentityOther)] != nil) {
             userId = currentUser.userIdentities[@(MPUserIdentityOther)];
-        } else if ([key isEqualToString:oiuserIdOther2] && currentUser.userIdentities[@(oiuserIdOther2)] != nil) {
+        } else if ([key isEqualToString:oiuserIdOther2] && currentUser.userIdentities[@(MPUserIdentityOther2)] != nil) {
             userId = currentUser.userIdentities[@(MPUserIdentityOther2)];
-        } else if ([key isEqualToString:oiuserIdOther3] && currentUser.userIdentities[@(oiuserIdOther3)] != nil) {
+        } else if ([key isEqualToString:oiuserIdOther3] && currentUser.userIdentities[@(MPUserIdentityOther3)] != nil) {
             userId = currentUser.userIdentities[@(MPUserIdentityOther3)];
-        } else if ([key isEqualToString:oiuserIdOther4] && currentUser.userIdentities[@(oiuserIdOther4)] != nil) {
+        } else if ([key isEqualToString:oiuserIdOther4] && currentUser.userIdentities[@(MPUserIdentityOther4)] != nil) {
             userId = currentUser.userIdentities[@(MPUserIdentityOther4)];
         } else if ([key isEqualToString:oiuserIdMPIDValue] && currentUser.userId != nil) {
             userId = currentUser.userId != 0 ? [currentUser.userId stringValue] : @"0" ;
