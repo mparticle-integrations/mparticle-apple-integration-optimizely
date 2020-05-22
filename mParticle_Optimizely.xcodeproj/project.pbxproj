@@ -209,7 +209,6 @@
 				D308517A219B2CEC00D1C15A /* Frameworks */,
 				D308517B219B2CEC00D1C15A /* Headers */,
 				D308517C219B2CEC00D1C15A /* Resources */,
-				D345E7EB23FDAADD0071FF8C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -246,7 +245,6 @@
 				D316BD2D217F670500688E56 /* Sources */,
 				D316BD2E217F670500688E56 /* Frameworks */,
 				D316BD2F217F670500688E56 /* Headers */,
-				D345E7EA23FDAA9E0071FF8C /* Carthage */,
 				D316BD30217F670500688E56 /* Resources */,
 			);
 			buildRules = (
@@ -352,49 +350,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D345E7EA23FDAA9E0071FF8C /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Optimizely.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/mParticle_Apple_SDK.framework",
-			);
-			name = Carthage;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/mParticle_Apple_SDK.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Optimizely.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-		D345E7EB23FDAADD0071FF8C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/tvOS/Optimizely.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/mParticle_Apple_SDK.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/mParticle_Apple_SDK.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Optimizely.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		D37713972404282100CF4773 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
