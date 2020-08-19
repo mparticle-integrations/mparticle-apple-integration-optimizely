@@ -1,2 +1,2 @@
 github "optimizely/swift-sdk" ~> 3.1
-github "mparticle/mparticle-apple-sdk" ~> 7.0
+github "mparticle/mparticle-apple-sdk" ~> 8.0.0-beta
