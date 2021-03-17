@@ -126,15 +126,22 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     for (MPCommerceEventInstruction *commerceEventInstruction in expandedInstructions) {
         NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
+
+        NSString *customCommerceEventName;
+        if (customFlags) {
+            if (customFlags[MPKitOptimizelyEventName].count != 0) {
+                customCommerceEventName = customFlags[MPKitOptimizelyEventName][0];
+            }
+            if (customFlags[MPKitOptimizelyCustomUserId].count != 0 & customFlags[MPKitOptimizelyCustomUserId][0] != nil) {
+                userId = customFlags[MPKitOptimizelyCustomUserId][0];
+            }
+        }
+        
+        if (customCommerceEventName) {
+            commerceEventInstruction.event.name = customCommerceEventName;
+        }
         
         if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
-            
-            NSString *customCommerceEventName;
-            if (customFlags) {
-                if (customFlags[MPKitOptimizelyEventName].count != 0) {
-                    customCommerceEventName = customFlags[MPKitOptimizelyEventName][0];
-                }
-            }
             
             NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
             
@@ -145,16 +152,6 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             
             if (transactionAttributes) {
                 [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
-            }
-            
-            if (customCommerceEventName) {
-                commerceEventInstruction.event.name = customCommerceEventName;
-            }
-        }
-        
-        if (customFlags) {
-            if (customFlags[MPKitOptimizelyCustomUserId].count != 0 & customFlags[MPKitOptimizelyCustomUserId][0] != nil) {
-                userId = customFlags[MPKitOptimizelyCustomUserId][0];
             }
         }
         
