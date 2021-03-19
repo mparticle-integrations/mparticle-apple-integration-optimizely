@@ -130,25 +130,35 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
         if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
             
             NSString *customCommerceEventName;
+            NSString *purchaseEventQuantity;
+
             if (customFlags) {
                 if (customFlags[MPKitOptimizelyEventName].count != 0) {
                     customCommerceEventName = customFlags[MPKitOptimizelyEventName][0];
                 }
+
+                if (customFlags[MPKitOptimizelyEventKeyValue].count != 0) {
+                    purchaseEventQuantity = customFlags[MPKitOptimizelyEventKeyValue][0];
+                }
             }
-            
-            NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
-            
-            if (commerceEvent.transactionAttributes.revenue != nil) {
-                NSNumber *revenueInCents = [NSNumber numberWithLong:[commerceEvent.transactionAttributes.revenue integerValue]*100];
-                [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
-            }
-            
-            if (transactionAttributes) {
-                [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
-            }
-            
+
             if (customCommerceEventName) {
                 commerceEventInstruction.event.name = customCommerceEventName;
+            }
+
+            NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
+
+            if (transactionAttributes) {
+                [baseProductAttributes addEntriesFromDictionary:[transactionAttributes transformValuesToString]];
+            }
+
+            if (commerceEvent.transactionAttributes.revenue != nil) {
+                NSNumber *revenueInCents = [NSNumber numberWithInteger:[commerceEvent.transactionAttributes.revenue doubleValue]*100];
+                [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
+            }
+
+            if (purchaseEventQuantity) {
+                [baseProductAttributes setObject:[purchaseEventQuantity integerValue] forKey: @"value"];
             }
         }
         
@@ -158,9 +168,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             }
         }
         
-        NSDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString];
-        
-        [optimizelyClient trackWithEventKey:commerceEventInstruction.event.name userId:userId attributes:currentUser.userAttributes eventTags:transformedEventInfo error:nil];
+
+        [optimizelyClient trackWithEventKey:commerceEventInstruction.event.name userId:userId attributes:currentUser.userAttributes eventTags:baseProductAttributes error:nil];
         [execStatus incrementForwardCount];
     }
     
