@@ -128,6 +128,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
         NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
 
         NSString *customCommerceEventName;
+        NSString *customCommerceEventValue;
         if (customFlags) {
             if (customFlags[MPKitOptimizelyEventName].count != 0) {
                 customCommerceEventName = customFlags[MPKitOptimizelyEventName][0];
@@ -135,31 +136,39 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             if (customFlags[MPKitOptimizelyCustomUserId].count != 0 & customFlags[MPKitOptimizelyCustomUserId][0] != nil) {
                 userId = customFlags[MPKitOptimizelyCustomUserId][0];
             }
+            if (customFlags[MPKitOptimizelyEventKeyValue].count != 0 & customFlags[MPKitOptimizelyEventKeyValue][0] != nil) {
+                customCommerceEventValue = customFlags[MPKitOptimizelyEventKeyValue][0];
+            }
         }
-        
+
         NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
         NSNumber *revenueInCents = nil;
+
         if (transactionAttributes) {
             [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
         }
+
         if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
-            
+
             if (commerceEvent.transactionAttributes.revenue != nil) {
                 revenueInCents = [NSNumber numberWithInteger:[commerceEvent.transactionAttributes.revenue floatValue]*100];
-                [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
             }
         }
+
         if (customCommerceEventName) {
             commerceEventInstruction.event.name = customCommerceEventName;
         }
-        
-        NSMutableDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString].mutableCopy;
-        if (revenueInCents != nil) {
-            [transformedEventInfo setObject:revenueInCents forKey: @"revenue"]; // Re-set so revenue is not sent as string
-        }
-        
 
-        
+        NSMutableDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString].mutableCopy;
+        if (revenueInCents) {
+            [transformedEventInfo setObject:revenueInCents forKey: @"revenue"];
+        }
+
+        if (customCommerceEventValue) {
+            NSNumber *value = [NSNumber numberWithInteger:[customCommerceEventValue integerValue]];
+            [transformedEventInfo setObject:value forKey: @"value"];
+        }
+
         [optimizelyClient trackWithEventKey:commerceEventInstruction.event.name userId:userId attributes:currentUser.userAttributes eventTags:transformedEventInfo error:nil];
         [execStatus incrementForwardCount];
     }
