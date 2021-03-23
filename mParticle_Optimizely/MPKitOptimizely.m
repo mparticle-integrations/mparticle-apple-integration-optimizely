@@ -141,12 +141,13 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             commerceEventInstruction.event.name = customCommerceEventName;
         }
         
+        NSNumber *revenueInCents = nil;
         if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
             
             NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
             
             if (commerceEvent.transactionAttributes.revenue != nil) {
-                NSNumber *revenueInCents = [NSNumber numberWithDouble:[commerceEvent.transactionAttributes.revenue doubleValue]*100];
+                revenueInCents = [NSNumber numberWithDouble:[commerceEvent.transactionAttributes.revenue doubleValue]*100];
                 [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
             }
             
@@ -155,7 +156,9 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             }
         }
         
-        NSDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString];
+        NSMutableDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString].mutableCopy;
+        [transformedEventInfo setObject:revenueInCents forKey: @"revenue"]; // Re-set so revenue is not sent as string
+
         
         [optimizelyClient trackWithEventKey:commerceEventInstruction.event.name userId:userId attributes:currentUser.userAttributes eventTags:transformedEventInfo error:nil];
         [execStatus incrementForwardCount];
