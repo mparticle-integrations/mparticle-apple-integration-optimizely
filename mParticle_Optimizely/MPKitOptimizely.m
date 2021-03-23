@@ -126,39 +126,39 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     for (MPCommerceEventInstruction *commerceEventInstruction in expandedInstructions) {
         NSMutableDictionary *baseProductAttributes = [[NSMutableDictionary alloc] init];
-        
-        if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
-            
-            NSString *customCommerceEventName;
-            if (customFlags) {
-                if (customFlags[MPKitOptimizelyEventName].count != 0) {
-                    customCommerceEventName = customFlags[MPKitOptimizelyEventName][0];
-                }
+
+        NSString *customCommerceEventName;
+        if (customFlags) {
+            if (customFlags[MPKitOptimizelyEventName].count != 0) {
+                customCommerceEventName = customFlags[MPKitOptimizelyEventName][0];
             }
+            if (customFlags[MPKitOptimizelyCustomUserId].count != 0 & customFlags[MPKitOptimizelyCustomUserId][0] != nil) {
+                userId = customFlags[MPKitOptimizelyCustomUserId][0];
+            }
+        }
+        
+        if (customCommerceEventName) {
+            commerceEventInstruction.event.name = customCommerceEventName;
+        }
+        
+        NSNumber *revenueInCents = nil;
+        if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
             
             NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
             
             if (commerceEvent.transactionAttributes.revenue != nil) {
-                NSNumber *revenueInCents = [NSNumber numberWithLong:[commerceEvent.transactionAttributes.revenue integerValue]*100];
+                revenueInCents = [NSNumber numberWithDouble:[commerceEvent.transactionAttributes.revenue doubleValue]*100];
                 [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
             }
             
             if (transactionAttributes) {
                 [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
             }
-            
-            if (customCommerceEventName) {
-                commerceEventInstruction.event.name = customCommerceEventName;
-            }
         }
         
-        if (customFlags) {
-            if (customFlags[MPKitOptimizelyCustomUserId].count != 0 & customFlags[MPKitOptimizelyCustomUserId][0] != nil) {
-                userId = customFlags[MPKitOptimizelyCustomUserId][0];
-            }
-        }
-        
-        NSDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString];
+        NSMutableDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString].mutableCopy;
+        [transformedEventInfo setObject:revenueInCents forKey: @"revenue"]; // Re-set so revenue is not sent as string
+
         
         [optimizelyClient trackWithEventKey:commerceEventInstruction.event.name userId:userId attributes:currentUser.userAttributes eventTags:transformedEventInfo error:nil];
         [execStatus incrementForwardCount];
