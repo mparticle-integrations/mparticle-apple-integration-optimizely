@@ -147,7 +147,7 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
             
             if (commerceEvent.transactionAttributes.revenue != nil) {
-                revenueInCents = [NSNumber numberWithDouble:[commerceEvent.transactionAttributes.revenue doubleValue]*100];
+                revenueInCents = [NSNumber numberWithInteger:[commerceEvent.transactionAttributes.revenue floatValue]*100];
                 [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
             }
             
