@@ -137,27 +137,27 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
             }
         }
         
-        if (customCommerceEventName) {
-            commerceEventInstruction.event.name = customCommerceEventName;
-        }
-        
+        NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
         NSNumber *revenueInCents = nil;
+        if (transactionAttributes) {
+            [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
+        }
         if (commerceEventInstruction.event.type == MPEventTypeTransaction && [commerceEventInstruction.event.name isEqualToString:@"eCommerce - purchase - Total"]) {
-            
-            NSDictionary *transactionAttributes = commerceEventInstruction.event.customAttributes;
             
             if (commerceEvent.transactionAttributes.revenue != nil) {
                 revenueInCents = [NSNumber numberWithInteger:[commerceEvent.transactionAttributes.revenue floatValue]*100];
                 [baseProductAttributes setObject:revenueInCents forKey: @"revenue"];
             }
-            
-            if (transactionAttributes) {
-                [baseProductAttributes addEntriesFromDictionary:transactionAttributes];
-            }
+        }
+        if (customCommerceEventName) {
+            commerceEventInstruction.event.name = customCommerceEventName;
         }
         
         NSMutableDictionary *transformedEventInfo = [baseProductAttributes transformValuesToString].mutableCopy;
-        [transformedEventInfo setObject:revenueInCents forKey: @"revenue"]; // Re-set so revenue is not sent as string
+        if (revenueInCents != nil) {
+            [transformedEventInfo setObject:revenueInCents forKey: @"revenue"]; // Re-set so revenue is not sent as string
+        }
+        
 
         
         [optimizelyClient trackWithEventKey:commerceEventInstruction.event.name userId:userId attributes:currentUser.userAttributes eventTags:transformedEventInfo error:nil];
