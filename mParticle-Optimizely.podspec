@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "mParticle-Optimizely"
-    s.version          = "8.0.4"
+    s.version          = "8.1.0"
     s.summary          = "Optimizely integration for mParticle"
 
     s.description      = <<-DESC
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.homepage         = "https://www.mparticle.com"
     s.license          = { :type => 'Apache 2.0', :file => 'LICENSE' }
     s.author           = { "mParticle" => "support@mparticle.com" }
-    s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-optimizely.git", :tag => s.version.to_s }
+    s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-optimizely.git", :tag => "v" +s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticle"
     s.dependency 'mParticle-Apple-SDK/mParticle', '~> 8.0'
     s.dependency 'OptimizelySwiftSDK', '~> 4.0'
