@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "mParticle-Optimizely"
-    s.version          = "8.1.0"
+    s.version          = "8.1.2"
     s.summary          = "Optimizely integration for mParticle"
 
     s.description      = <<-DESC
