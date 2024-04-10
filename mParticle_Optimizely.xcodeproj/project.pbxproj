@@ -23,6 +23,8 @@
 		D377139824042B1000CF4773 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713932404247E00CF4773 /* Optimizely.framework */; };
 		D377139924042B2200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */; };
 		D377139B24042B2200CF4773 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D377139A24042B2200CF4773 /* OCMock.framework */; };
+		D3B8187D2BC6C002001F09BB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D3B8187C2BC6C002001F09BB /* PrivacyInfo.xcprivacy */; };
+		D3B8187E2BC6C002001F09BB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D3B8187C2BC6C002001F09BB /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,7 @@
 		D37713932404247E00CF4773 /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Optimizely.framework; path = Carthage/Build/tvOS/Optimizely.framework; sourceTree = "<group>"; };
 		D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/tvOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
 		D377139A24042B2200CF4773 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/tvOS/OCMock.framework; sourceTree = "<group>"; };
+		D3B8187C2BC6C002001F09BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,7 @@
 				D316BD4D217F67BC00688E56 /* MPKitOptimizely.m */,
 				D316BD35217F670500688E56 /* mParticle_Optimizely.h */,
 				D316BD36217F670600688E56 /* Info.plist */,
+				D3B8187C2BC6C002001F09BB /* PrivacyInfo.xcprivacy */,
 			);
 			path = mParticle_Optimizely;
 			sourceTree = "<group>";
@@ -323,6 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B8187E2BC6C002001F09BB /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B8187D2BC6C002001F09BB /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
