@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-optimizely.git", :tag => s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticle"
     s.dependency 'mParticle-Apple-SDK/mParticle', '~> 8.0'
-    s.dependency 'OptimizelySwiftSDK', '~> 3.0'
+    s.dependency 'OptimizelySwiftSDK', '~> 4.0'
     s.swift_versions = ['5.0']
 
     s.ios.deployment_target = "10.0"
