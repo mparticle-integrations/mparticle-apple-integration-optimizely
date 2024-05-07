@@ -3,10 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53DE7F822BEA868400907F6D /* mParticle_Apple_SDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DE7F7F2BEA868400907F6D /* mParticle_Apple_SDK.xcframework */; };
+		53DE7F832BEA868400907F6D /* Optimizely.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DE7F802BEA868400907F6D /* Optimizely.xcframework */; };
+		53DE7F872BEA879900907F6D /* OCMock.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DE7F7E2BEA868400907F6D /* OCMock.xcframework */; };
+		53DE7F882BEA879A00907F6D /* OCMock.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DE7F7E2BEA868400907F6D /* OCMock.xcframework */; };
+		53DE7F892BEA8ACD00907F6D /* mParticle_Apple_SDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DE7F7F2BEA868400907F6D /* mParticle_Apple_SDK.xcframework */; };
+		53DE7F8B2BEA8ACD00907F6D /* Optimizely.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DE7F802BEA868400907F6D /* Optimizely.xcframework */; };
+		53DE7F8E2BEA8AE700907F6D /* mParticle_Optimizely_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D308517E219B2CEC00D1C15A /* mParticle_Optimizely_tvOS.framework */; };
 		D308518C219B2CED00D1C15A /* mParticle_Optimizely_tvOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D308518B219B2CED00D1C15A /* mParticle_Optimizely_tvOSTests.m */; };
 		D308518E219B2CED00D1C15A /* mParticle_Optimizely_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D3085180219B2CEC00D1C15A /* mParticle_Optimizely_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3085195219B447600D1C15A /* MPKitOptimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD4C217F67BC00688E56 /* MPKitOptimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,18 +23,18 @@
 		D316BD43217F670600688E56 /* mParticle_Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD35217F670500688E56 /* mParticle_Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D316BD4E217F67BC00688E56 /* MPKitOptimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = D316BD4C217F67BC00688E56 /* MPKitOptimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D316BD4F217F67BC00688E56 /* MPKitOptimizely.m in Sources */ = {isa = PBXBuildFile; fileRef = D316BD4D217F67BC00688E56 /* MPKitOptimizely.m */; };
-		D377138D23FEE08E00CF4773 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D377138C23FEE08E00CF4773 /* mParticle_Apple_SDK.framework */; };
-		D377139123FEE09F00CF4773 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D377139023FEE09F00CF4773 /* Optimizely.framework */; };
-		D37713942404247E00CF4773 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713932404247E00CF4773 /* Optimizely.framework */; };
-		D37713962404249200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */; };
-		D377139824042B1000CF4773 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713932404247E00CF4773 /* Optimizely.framework */; };
-		D377139924042B2200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */; };
-		D377139B24042B2200CF4773 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D377139A24042B2200CF4773 /* OCMock.framework */; };
 		D3B8187D2BC6C002001F09BB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D3B8187C2BC6C002001F09BB /* PrivacyInfo.xcprivacy */; };
 		D3B8187E2BC6C002001F09BB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D3B8187C2BC6C002001F09BB /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		53DE7F902BEA8AE700907F6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D316BD29217F670500688E56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D308517D219B2CEC00D1C15A;
+			remoteInfo = mParticle_Optimizely_tvOS;
+		};
 		D3085188219B2CED00D1C15A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D316BD29217F670500688E56 /* Project object */;
@@ -45,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		53DE7F7E2BEA868400907F6D /* OCMock.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OCMock.xcframework; path = Carthage/Build/OCMock.xcframework; sourceTree = "<group>"; };
+		53DE7F7F2BEA868400907F6D /* mParticle_Apple_SDK.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:DLD43Y3TRP:mParticle, inc"; lastKnownFileType = wrapper.xcframework; name = mParticle_Apple_SDK.xcframework; path = Carthage/Build/mParticle_Apple_SDK.xcframework; sourceTree = "<group>"; };
+		53DE7F802BEA868400907F6D /* Optimizely.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Optimizely.xcframework; path = Carthage/Build/Optimizely.xcframework; sourceTree = "<group>"; };
 		D308517E219B2CEC00D1C15A /* mParticle_Optimizely_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mParticle_Optimizely_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3085180219B2CEC00D1C15A /* mParticle_Optimizely_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mParticle_Optimizely_tvOS.h; sourceTree = "<group>"; };
 		D3085181219B2CEC00D1C15A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,11 +69,6 @@
 		D316BD42217F670600688E56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D316BD4C217F67BC00688E56 /* MPKitOptimizely.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPKitOptimizely.h; sourceTree = "<group>"; };
 		D316BD4D217F67BC00688E56 /* MPKitOptimizely.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPKitOptimizely.m; sourceTree = "<group>"; };
-		D377138C23FEE08E00CF4773 /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/iOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
-		D377139023FEE09F00CF4773 /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Optimizely.framework; path = Carthage/Build/iOS/Optimizely.framework; sourceTree = "<group>"; };
-		D37713932404247E00CF4773 /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Optimizely.framework; path = Carthage/Build/tvOS/Optimizely.framework; sourceTree = "<group>"; };
-		D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/tvOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
-		D377139A24042B2200CF4773 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/tvOS/OCMock.framework; sourceTree = "<group>"; };
 		D3B8187C2BC6C002001F09BB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,8 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37713962404249200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */,
-				D37713942404247E00CF4773 /* Optimizely.framework in Frameworks */,
+				53DE7F892BEA8ACD00907F6D /* mParticle_Apple_SDK.xcframework in Frameworks */,
+				53DE7F8B2BEA8ACD00907F6D /* Optimizely.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,9 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D377139B24042B2200CF4773 /* OCMock.framework in Frameworks */,
-				D377139924042B2200CF4773 /* mParticle_Apple_SDK.framework in Frameworks */,
-				D377139824042B1000CF4773 /* Optimizely.framework in Frameworks */,
+				53DE7F8E2BEA8AE700907F6D /* mParticle_Optimizely_tvOS.framework in Frameworks */,
+				53DE7F882BEA879A00907F6D /* OCMock.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D377139123FEE09F00CF4773 /* Optimizely.framework in Frameworks */,
-				D377138D23FEE08E00CF4773 /* mParticle_Apple_SDK.framework in Frameworks */,
+				53DE7F832BEA868400907F6D /* Optimizely.xcframework in Frameworks */,
+				53DE7F822BEA868400907F6D /* mParticle_Apple_SDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D316BD3C217F670600688E56 /* mParticle_Optimizely.framework in Frameworks */,
+				53DE7F872BEA879900907F6D /* OCMock.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,11 +177,9 @@
 		D377138B23FEE08E00CF4773 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D377139A24042B2200CF4773 /* OCMock.framework */,
-				D37713952404249200CF4773 /* mParticle_Apple_SDK.framework */,
-				D377139023FEE09F00CF4773 /* Optimizely.framework */,
-				D37713932404247E00CF4773 /* Optimizely.framework */,
-				D377138C23FEE08E00CF4773 /* mParticle_Apple_SDK.framework */,
+				53DE7F7F2BEA868400907F6D /* mParticle_Apple_SDK.xcframework */,
+				53DE7F802BEA868400907F6D /* Optimizely.xcframework */,
+				53DE7F7E2BEA868400907F6D /* OCMock.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -230,12 +233,12 @@
 				D3085182219B2CEC00D1C15A /* Sources */,
 				D3085183219B2CEC00D1C15A /* Frameworks */,
 				D3085184219B2CEC00D1C15A /* Resources */,
-				D37713972404282100CF4773 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D3085189219B2CED00D1C15A /* PBXTargetDependency */,
+				53DE7F912BEA8AE700907F6D /* PBXTargetDependency */,
 			);
 			name = mParticle_Optimizely_tvOSTests;
 			productName = mParticle_Optimizely_tvOSTests;
@@ -355,32 +358,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		D37713972404282100CF4773 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/tvOS/OCMock.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/Optimizely.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/mParticle_Apple_SDK.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OCMock.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/mParticle_Apple_SDK.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Optimizely.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D3085179219B2CEC00D1C15A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -417,6 +394,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		53DE7F912BEA8AE700907F6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D308517D219B2CEC00D1C15A /* mParticle_Optimizely_tvOS */;
+			targetProxy = 53DE7F902BEA8AE700907F6D /* PBXContainerItemProxy */;
+		};
 		D3085189219B2CED00D1C15A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D308517D219B2CEC00D1C15A /* mParticle_Optimizely_tvOS */;
@@ -457,7 +439,6 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};
 			name = Debug;
 		};
@@ -488,14 +469,12 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};
 			name = Release;
 		};
 		D3085193219B2CED00D1C15A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -520,7 +499,6 @@
 		D3085194219B2CED00D1C15A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DLD43Y3TRP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -594,10 +572,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -649,9 +628,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -674,7 +654,6 @@
 				);
 				INFOPLIST_FILE = mParticle_Optimizely/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -703,7 +682,6 @@
 				);
 				INFOPLIST_FILE = mParticle_Optimizely/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

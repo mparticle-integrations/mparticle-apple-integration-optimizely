@@ -12,7 +12,7 @@ let package = Package(
     dependencies: [
       .package(name: "mParticle-Apple-SDK",
                url: "https://github.com/mParticle/mparticle-apple-sdk",
-               .upToNextMajor(from: "8.0.0")),
+               .upToNextMajor(from: "8.22.0")),
       .package(name: "Optimizely",
                url: "https://github.com/optimizely/swift-sdk",
                .upToNextMajor(from: "4.0.0")),
@@ -22,6 +22,7 @@ let package = Package(
             name: "mParticle_Optimizely",
             dependencies: ["mParticle-Apple-SDK", "Optimizely"],
             path: "mParticle_Optimizely",
+            resources: [.process("PrivacyInfo.xcprivacy")],
             publicHeadersPath: "."
         ),
     ]

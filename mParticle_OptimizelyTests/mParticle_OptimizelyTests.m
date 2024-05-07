@@ -626,9 +626,8 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] trackWithEventKey:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
     [[mockClient expect] trackWithEventKey:@"testMapping" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:[OCMArg checkWithBlock:^BOOL(NSDictionary<NSString *, NSString *> *value) {
-        return [value[@"revenue"] isEqual:@"1300"];
+        return [value[@"revenue"] isEqual:@1300];
     }] error:nil];
     
     execStatus = [kitInstance logBaseEvent:event];
@@ -687,10 +686,9 @@ static NSString *const oiuserIdDeviceStampValue = @"deviceApplicationStamp";
     
     kitInstance.kitApi = mockKitAPI;
     
-    [[mockClient expect] trackWithEventKey:@"eCommerce - purchase - Item" userId:OCMOCK_ANY attributes:OCMOCK_ANY eventTags:OCMOCK_ANY error:nil];
     [[mockClient expect] trackWithEventKey:@"testMapping" userId:@"User65656" attributes:OCMOCK_ANY eventTags:[OCMArg checkWithBlock:^BOOL(NSDictionary<NSString *, NSString *> *value)
     {
-        return [value[@"revenue"] isEqual:@"1300"];
+        return [value[@"revenue"] isEqual:@1300];
     }] error:nil];
     
     execStatus = [kitInstance logBaseEvent:event];

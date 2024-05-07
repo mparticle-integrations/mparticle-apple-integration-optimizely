@@ -1,2 +1,2 @@
-github "optimizely/swift-sdk" ~> 3.1
-github "mparticle/mparticle-apple-sdk" ~> 8.0
+github "optimizely/swift-sdk" ~> 4.0
+binary "https://raw.githubusercontent.com/mParticle/mparticle-apple-sdk/main/mParticle_Apple_SDK.json" ~> 8.22

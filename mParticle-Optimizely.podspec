@@ -12,16 +12,15 @@ Pod::Spec.new do |s|
     s.author           = { "mParticle" => "support@mparticle.com" }
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-optimizely.git", :tag => "v" +s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticle"
-    s.dependency 'mParticle-Apple-SDK/mParticle', '~> 8.0'
+    s.dependency 'mParticle-Apple-SDK/mParticle', '~> 8.22'
     s.dependency 'OptimizelySwiftSDK', '~> 4.0'
     s.swift_versions = ['5.0']
 
     s.ios.deployment_target = "10.0"
     s.ios.source_files      = 'mParticle_Optimizely/*.{h,m,mm}'
-    s.ios.frameworks = 'CoreTelephony', 'SystemConfiguration'
-    s.libraries = 'z'
+    s.ios.resource_bundles  = { 'mParticle-Optimizely-Privacy' => ['mParticle_Optimizely/PrivacyInfo.xcprivacy'] }
 
     s.tvos.deployment_target = "10.0"
     s.tvos.source_files      = 'mParticle_Optimizely/*.{h,m,mm}'
-    s.tvos.frameworks = 'SystemConfiguration'
+    s.tvos.resource_bundles  = { 'mParticle-Optimizely-Privacy' => ['mParticle_Optimizely/PrivacyInfo.xcprivacy'] }
 end
